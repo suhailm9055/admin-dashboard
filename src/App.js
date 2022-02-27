@@ -1,7 +1,7 @@
 import Topbar from "./components/Topbar";
 import styled from "styled-components";
 import { Sidebar } from "./components/Sidebar";
-import Home from "./components/pages/Home";
+import Home from "./pages/Home";
 
 const MainContainer = styled.div`
 

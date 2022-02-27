@@ -1,7 +1,6 @@
 import {
   Assessment,
   ChatBubble,
-  CurrencyRupeeOutlined,
   CurrencyRupeeSharp,
   DynamicFeed,
   Email,
@@ -31,21 +30,20 @@ const Menu = styled.div`
 `;
 const Title = styled.h3`
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
   color: #6e7474bb;
 `;
 const List = styled.ul`
   list-style: none;
-  padding: 5px;
+  padding: 2.5px;
 `;
 const ListItem = styled.li`
-  padding: 2.5px;
-  
+  padding: 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 17px;
-  font-weight: 200;
+  font-size: 20px;
+  font-weight: 400;
   border-radius: 10px;
   background-color: ${(props) =>
     props.selection === "active" ? "#c5ffff" : ""};
@@ -61,15 +59,15 @@ export const Sidebar = () => {
           <Title>Dashboard</Title>
           <List>
             <ListItem selection="active">
-              <Home style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Home style={{ fontSize: "20px", marginInline: "10px" }} />
               Home
             </ListItem>
             <ListItem>
-              <Timeline style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Timeline style={{ fontSize: "20px", marginInline: "10px" }} />
               Analytics
             </ListItem>
             <ListItem>
-              <TrendingUp style={{ fontSize: "22px", marginRight: "10px" }} />
+              <TrendingUp style={{ fontSize: "20px", marginInline: "10px" }} />
               Sales
             </ListItem>
           </List>
@@ -78,21 +76,21 @@ export const Sidebar = () => {
           <Title>Quick Menu</Title>
           <List>
             <ListItem selection="">
-              <PermIdentity style={{ fontSize: "22px", marginRight: "10px" }} />
+              <PermIdentity style={{ fontSize: "20px", marginInline: "10px" }} />
               Users
             </ListItem>
             <ListItem>
-              <LocalMall style={{ fontSize: "22px", marginRight: "10px" }} />
+              <LocalMall style={{ fontSize: "20px", marginInline: "10px" }} />
               Products
             </ListItem>
             <ListItem>
               <CurrencyRupeeSharp
-                style={{ fontSize: "22px", marginRight: "10px" }}
+                style={{ fontSize: "20px", marginInline: "10px" }}
               />
               Transactions
             </ListItem>
             <ListItem>
-              <Assessment style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Assessment style={{ fontSize: "20px", marginInline: "10px" }} />
               Reports
             </ListItem>
           </List>
@@ -101,15 +99,15 @@ export const Sidebar = () => {
           <Title>Notifications</Title>
           <List>
             <ListItem selection="">
-              <Email style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Email style={{ fontSize: "20px", marginInline: "10px" }} />
               Mail
             </ListItem>
             <ListItem>
-              <DynamicFeed style={{ fontSize: "22px", marginRight: "10px" }} />
+              <DynamicFeed style={{ fontSize: "20px", marginInline: "10px" }} />
               Feedback
             </ListItem>
             <ListItem>
-              <ChatBubble style={{ fontSize: "22px", marginRight: "10px" }} />
+              <ChatBubble style={{ fontSize: "20px", marginInline: "10px" }} />
               Messages
             </ListItem>
           </List>
@@ -118,15 +116,15 @@ export const Sidebar = () => {
           <Title>Staff</Title>
           <List>
             <ListItem selection="">
-              <Work style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Work style={{ fontSize: "20px", marginInline: "10px" }} />
               Manage
             </ListItem>
             <ListItem>
-              <Timeline style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Timeline style={{ fontSize: "20px", marginInline: "10px" }} />
               Analytics
             </ListItem>
             <ListItem>
-              <Report style={{ fontSize: "22px", marginRight: "10px" }} />
+              <Report style={{ fontSize: "20px", marginInline: "10px" }} />
               Reports
             </ListItem>
           </List>
