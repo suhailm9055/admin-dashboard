@@ -33,8 +33,10 @@ const IconContainer = styled.div`
   position: relative;
   margin-right: 15px;
   cursor: pointer;
+  transition: transform 0.2s ease;
   &:hover {
-    color: #020202;
+    color: #4d4b4b;
+    transform:scale(1.1)
   }
 `;
 const BadgeSpan = styled.p`
@@ -45,7 +47,7 @@ const BadgeSpan = styled.p`
   left: 10px;
   color: white;
   background-color: ${(props) =>
-    props.color === "red" ? "#ff0000 " : "#003cff"};
+    props.color === "red" ? "#ea2f2f" : "#0b7acb"};
   border-radius: 50%;
   font-size: 14px;
   font-weight: 100;
