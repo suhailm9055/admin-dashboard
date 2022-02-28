@@ -20,7 +20,7 @@ flex:1;
 `;
 const PagesContainer = styled.div`
 margin-top: 10px;
-flex:4;`;
+flex:5;`;
 
 function App() {
   return (

@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import {
+  ArrowDownward,
   ArrowUpward,
   CurrencyRupee,
   CurrencyRupeeOutlined,
 } from "@mui/icons-material";
 
 const Container = styled.div`
-width: 100%;
+width: 90%;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -15,29 +16,38 @@ padding:5px 10px;
 `;
 const Item = styled.div`
 flex: 1;
-margin: 0px 20px;
-padding: 30px;
+margin: 5px 20px;
+padding: 25px 50px;
 border-radius:10px;
 cursor: pointer;
-box-shadow: 0px 0px 15px -10px #222222;
+background: linear-gradient(#f4ffff,#c5fdfd5a);
+box-shadow: 0px 0px 15px -10px #000000;
 `;
 const Title = styled.h2`
 font-weight:500;`;
 const MoneyContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
-const Money = styled.h1``;
+const Money = styled.h1`
+ display: flex;
+  align-items: center;
+  `;
 const MoneyRate = styled.h4`
   font-size: 18px;
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 30px;
   font-weight:500;
+  color:${props=>props.trend==="up"?"green":"red"};
 
 
 `;
-
+const Subtitle = styled.p`
+font-size: 15px;
+color:gray;
+`
 const FeaturedInfo = () => {
   return (
     <Container>
@@ -47,37 +57,46 @@ const FeaturedInfo = () => {
           <Money>
             <CurrencyRupeeOutlined /> 2,458{" "}
           </Money>
-          <MoneyRate>
+          <MoneyRate trend="up">
             +2.14
             <ArrowUpward />
           </MoneyRate>
         </MoneyContainer>
+        <Subtitle>
+          Compared to last month
+        </Subtitle>
       </Item>
       <Item>
-        <Title> Revenue</Title>
+        <Title> Sales</Title>
         <MoneyContainer>
           <Money>
-            <CurrencyRupeeOutlined /> 2,458{" "}
+            <CurrencyRupeeOutlined /> 258{" "}
           </Money>
           <MoneyRate>
             {" "}
-            +2.14
-            <ArrowUpward />
+            -1.14
+            <ArrowDownward />
           </MoneyRate>
         </MoneyContainer>
+        <Subtitle>
+          Compared to last month
+        </Subtitle>
       </Item>
       <Item>
-        <Title> Revenue</Title>
+        <Title> Cost</Title>
         <MoneyContainer>
           <Money>
-            <CurrencyRupeeOutlined /> 2,458{" "}
+            <CurrencyRupeeOutlined /> 458{" "}
           </Money>
-          <MoneyRate>
+          <MoneyRate trend="up">
             {" "}
-            +2.14
+            +1.14
             <ArrowUpward />
           </MoneyRate>
         </MoneyContainer>
+        <Subtitle>
+          Compared to last month
+        </Subtitle>
       </Item>
     </Container>
   );
