@@ -47,8 +47,7 @@ const MoneyRate = styled.h4`
 
 `;
 const Subtitle = styled.p`
-font-size: 15px;
-color:gray;
+
 `
 const FeaturedInfo = () => {
   return (

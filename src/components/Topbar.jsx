@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Notifications, Language, Settings, Person } from "@mui/icons-material";
 const Container = styled.div`
-  background-color: #ceffffbe;
+  background-color: #f4ffff;
   width: 100%;
   height: 50px;
 `;
