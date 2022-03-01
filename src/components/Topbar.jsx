@@ -33,7 +33,7 @@ const IconContainer = styled.div`
   position: relative;
   margin-right: 15px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.1s ease;
   &:hover {
     color: #4d4b4b;
     transform:scale(1.1)

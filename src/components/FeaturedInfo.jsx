@@ -24,11 +24,13 @@ background: linear-gradient(#f4ffff,#c5fdfd5a);
 box-shadow: 0px 0px 15px -10px #000000;
 `;
 const Title = styled.h2`
-font-weight:500;`;
+font-weight: bold;
+  font-size: 23px;
+  color: #6e7474;`;
 const MoneyContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: baseline;
 `;
 const Money = styled.h1`
  display: flex;
@@ -40,7 +42,7 @@ const MoneyRate = styled.h4`
   align-items: center;
   margin-left: 30px;
   font-weight:500;
-  color:${props=>props.trend==="up"?"green":"red"};
+  color:${props=>props.trend==="up"?"#10b44f":"#eb4c4c"};
 
 
 `;
