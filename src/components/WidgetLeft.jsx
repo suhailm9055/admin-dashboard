@@ -1,18 +1,20 @@
 import { Visibility } from "@mui/icons-material";
-import { fontSize, height } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
+  
   align-items: center;
   flex-direction: column;
-  padding: 5px 10px;
+  padding: 5px 1px; */
+  flex:1;
+  margin-right:10px;
 `;
 
 const Wrapper = styled.div`
-  flex: 1;
-  margin: 5px 20px;
+  
+  /* margin: 5px 5px 5px 29px; */
   padding: 15px 20px;
   border-radius: 10px;
 

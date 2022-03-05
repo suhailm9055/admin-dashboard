@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 
 const Container = styled.div`
-width: 90%;
+/* width: 90%; */
 display: flex;
 align-items: center;
 justify-content: space-between;

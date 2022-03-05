@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 const Container = styled.div`
-  width: 90%;
+  /* width:fit-content; */
   display: flex;
   align-items: center;
   justify-content: space-between;
