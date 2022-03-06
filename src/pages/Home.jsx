@@ -12,6 +12,7 @@ const Container =styled.div`
   margin: 20px;
   padding: 0 10px;
   /* width: 90%; */
+ 
 
 
 `

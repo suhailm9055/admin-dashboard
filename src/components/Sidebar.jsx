@@ -15,6 +15,10 @@ import {
 import React from "react";
 import styled from "styled-components";
 
+import {
+  
+  Link
+} from "react-router-dom";
 const Container = styled.div`
   background-color: #f4ffff;
   height: calc(100vh - 50px);
@@ -60,16 +64,25 @@ export const Sidebar = () => {
         <Menu>
           <Title>Dashboard</Title>
           <List>
+            <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/">
             <ListItem selection="active">
-              <Home style={{ fontSize: IconSize, marginInline: marginInline }} />
+
+              <Home
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+                />
               Home
             </ListItem>
+                </Link>
             <ListItem>
-              <Timeline style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Timeline
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Analytics
             </ListItem>
             <ListItem>
-              <TrendingUp style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <TrendingUp
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Sales
             </ListItem>
           </List>
@@ -77,12 +90,18 @@ export const Sidebar = () => {
         <Menu>
           <Title>Quick Menu</Title>
           <List>
+          <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/users">
             <ListItem selection="">
-              <PermIdentity style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <PermIdentity
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Users
             </ListItem>
+            </Link>
             <ListItem>
-              <LocalMall style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <LocalMall
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Products
             </ListItem>
             <ListItem>
@@ -92,7 +111,9 @@ export const Sidebar = () => {
               Transactions
             </ListItem>
             <ListItem>
-              <Assessment style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Assessment
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Reports
             </ListItem>
           </List>
@@ -101,15 +122,21 @@ export const Sidebar = () => {
           <Title>Notifications</Title>
           <List>
             <ListItem selection="">
-              <Email style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Email
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Mail
             </ListItem>
             <ListItem>
-              <DynamicFeed style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <DynamicFeed
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Feedback
             </ListItem>
             <ListItem>
-              <ChatBubble style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <ChatBubble
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Messages
             </ListItem>
           </List>
@@ -118,15 +145,21 @@ export const Sidebar = () => {
           <Title>Staff</Title>
           <List>
             <ListItem selection="">
-              <Work style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Work
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Manage
             </ListItem>
             <ListItem>
-              <Timeline style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Timeline
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Analytics
             </ListItem>
             <ListItem>
-              <Report style={{ fontSize: IconSize, marginInline: marginInline }} />
+              <Report
+                style={{ fontSize: IconSize, marginInline: marginInline }}
+              />
               Reports
             </ListItem>
           </List>

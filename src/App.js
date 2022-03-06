@@ -3,7 +3,16 @@ import styled from "styled-components";
 import { Sidebar } from "./components/Sidebar";
 import Home from "./pages/Home";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import UsersList from "./pages/UsersList";
+
 const MainContainer = styled.div`
+
 `;
 const HeaderContainer = styled.div`
   position: sticky;
@@ -24,6 +33,8 @@ flex:5;`;
 
 function App() {
   return (
+    <Router>
+
     <MainContainer>
       <HeaderContainer>
         <Topbar />
@@ -34,10 +45,19 @@ function App() {
          
         </SidebarContainer>
         <PagesContainer>
-          <Home />
+        <Switch>
+
+        <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/users">
+            <UsersList />
+          </Route>
+        </Switch>
         </PagesContainer>
       </BodyContainer>
     </MainContainer>
+    </Router>
   );
 }
 
