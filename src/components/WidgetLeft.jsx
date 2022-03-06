@@ -29,6 +29,7 @@ const Title = styled.h3`
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content:space-between;
   margin: 10px 15px;
 `;
 const Img = styled.img`
@@ -70,12 +71,13 @@ const Button = styled.button`
 `;
 
 const ButtonText = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   padding-top: 2px;
   padding-right: 5px;
 `;
 
-
+const IconSize = "17px"; 
+const marginRight = "10px"; 
 export const WidgetLeft = () => {
   return (
     <Container>
@@ -88,7 +90,7 @@ export const WidgetLeft = () => {
             <UserTitle>Photographer</UserTitle>
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: "20px", marginRight: "10px" }} />
+            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
         </UserContainer>
@@ -100,7 +102,7 @@ export const WidgetLeft = () => {
             <UserTitle>Photographer</UserTitle>
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: "20px", marginRight: "10px" }} />
+            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
         </UserContainer>
@@ -111,7 +113,7 @@ export const WidgetLeft = () => {
             <UserTitle>Photographer</UserTitle>
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: "20px", marginRight: "10px" }} />
+            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
         </UserContainer>
@@ -122,7 +124,7 @@ export const WidgetLeft = () => {
             <UserTitle>Photographer</UserTitle>
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: "20px", marginRight: "10px" }} />
+            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
         </UserContainer>
@@ -133,7 +135,7 @@ export const WidgetLeft = () => {
             <UserTitle>Photographer</UserTitle>
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: "20px", marginRight: "10px" }} />
+            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
         </UserContainer>

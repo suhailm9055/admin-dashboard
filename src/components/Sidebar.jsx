@@ -51,6 +51,8 @@ const ListItem = styled.li`
     background-color: #c5ffff;
   }
 `;
+const IconSize = "18px";
+const marginInline = "10px";
 export const Sidebar = () => {
   return (
     <Container>
@@ -59,15 +61,15 @@ export const Sidebar = () => {
           <Title>Dashboard</Title>
           <List>
             <ListItem selection="active">
-              <Home style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Home style={{ fontSize: IconSize, marginInline: marginInline }} />
               Home
             </ListItem>
             <ListItem>
-              <Timeline style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Timeline style={{ fontSize: IconSize, marginInline: marginInline }} />
               Analytics
             </ListItem>
             <ListItem>
-              <TrendingUp style={{ fontSize: "20px", marginInline: "10px" }} />
+              <TrendingUp style={{ fontSize: IconSize, marginInline: marginInline }} />
               Sales
             </ListItem>
           </List>
@@ -76,21 +78,21 @@ export const Sidebar = () => {
           <Title>Quick Menu</Title>
           <List>
             <ListItem selection="">
-              <PermIdentity style={{ fontSize: "20px", marginInline: "10px" }} />
+              <PermIdentity style={{ fontSize: IconSize, marginInline: marginInline }} />
               Users
             </ListItem>
             <ListItem>
-              <LocalMall style={{ fontSize: "20px", marginInline: "10px" }} />
+              <LocalMall style={{ fontSize: IconSize, marginInline: marginInline }} />
               Products
             </ListItem>
             <ListItem>
               <CurrencyRupeeSharp
-                style={{ fontSize: "20px", marginInline: "10px" }}
+                style={{ fontSize: IconSize, marginInline: marginInline }}
               />
               Transactions
             </ListItem>
             <ListItem>
-              <Assessment style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Assessment style={{ fontSize: IconSize, marginInline: marginInline }} />
               Reports
             </ListItem>
           </List>
@@ -99,15 +101,15 @@ export const Sidebar = () => {
           <Title>Notifications</Title>
           <List>
             <ListItem selection="">
-              <Email style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Email style={{ fontSize: IconSize, marginInline: marginInline }} />
               Mail
             </ListItem>
             <ListItem>
-              <DynamicFeed style={{ fontSize: "20px", marginInline: "10px" }} />
+              <DynamicFeed style={{ fontSize: IconSize, marginInline: marginInline }} />
               Feedback
             </ListItem>
             <ListItem>
-              <ChatBubble style={{ fontSize: "20px", marginInline: "10px" }} />
+              <ChatBubble style={{ fontSize: IconSize, marginInline: marginInline }} />
               Messages
             </ListItem>
           </List>
@@ -116,15 +118,15 @@ export const Sidebar = () => {
           <Title>Staff</Title>
           <List>
             <ListItem selection="">
-              <Work style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Work style={{ fontSize: IconSize, marginInline: marginInline }} />
               Manage
             </ListItem>
             <ListItem>
-              <Timeline style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Timeline style={{ fontSize: IconSize, marginInline: marginInline }} />
               Analytics
             </ListItem>
             <ListItem>
-              <Report style={{ fontSize: "20px", marginInline: "10px" }} />
+              <Report style={{ fontSize: IconSize, marginInline: marginInline }} />
               Reports
             </ListItem>
           </List>

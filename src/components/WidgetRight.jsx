@@ -8,12 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   padding: 5px 1px;
   width: 100%; */
-  flex:2;
-  `;
+  flex: 2;
+`;
 
 const Wrapper = styled.div`
-
- 
   /* margin: 5px 29px 5px 5px; */
   padding: 15px 20px;
   border-radius: 10px;
@@ -29,13 +27,14 @@ const Title = styled.h3`
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 10px 15px;
+  margin: 5px 0 5px 10px;
 `;
 const Img = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 20px;
+  object-fit: cover;
 `;
 const UserDetails = styled.div`
   display: flex;
@@ -43,7 +42,7 @@ const UserDetails = styled.div`
   flex-direction: column;
   margin-right: 20px;
 `;
-const UserName = styled.h4`
+const UserName = styled.span`
   font-size: 18px;
   font-weight: 600;
 `;
@@ -54,19 +53,21 @@ const UserTitle = styled.h5`
 `;
 const Button = styled.button`
   display: flex;
+  min-width:100%;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 10px;
-  background-color: #d3f8f8;
-  color: #555;
-  padding: 5px 10px;
+  background-color:${props=>props.status==="Approved" ?"#d1ffe8":props=>props.status==="Declined"?"#ffc6c6":"#b9ddff"} ;
+  color: ${props=>props.status==="Approved" ?"#23a765":props=>props.status==="Declined"?"#b32626":"#206aaf"} ;
+  padding: 1px 2px;
+  font-size: 18px;
 
-  &:hover {
+  /* &:hover {
     background-color: #c5ffff;
     color: #1f1f1f;
     cursor: pointer;
-  }
+  } */
 `;
 
 const ButtonText = styled.p`
@@ -74,30 +75,72 @@ const ButtonText = styled.p`
   padding-top: 2px;
   padding-right: 5px;
 `;
-
+const TableContainer = styled.table`
+width: 100%;
+border-spacing:20px;
+`;
+const TableRow = styled.tr`
+`
+const TableHead = styled.th`
+text-align:left;`;
+const TableDesc = styled.td`
+font-weight: 300;
+`;
 
 export const WidgetRight = () => {
   return (
     <Container>
       <Wrapper>
         <Title>Latest Transactions</Title>
-        <table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</table>
+        <TableContainer>
+
+        <TableRow>
+          <TableHead>Customer</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead>Amount</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+        <TableRow>
+          <TableDesc>
+          <UserContainer>
+
+            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
+
+            <UserName>Alfreds Futterkiste</UserName>
+          </UserContainer>
+          </TableDesc>
+          <TableDesc>20 feb 22</TableDesc>
+          <TableDesc>200 QAR</TableDesc>
+          <TableDesc><Button status="Approved">Approved</Button></TableDesc>
+        </TableRow>
+        <TableRow>
+          <TableDesc>
+            <UserContainer>
+              
+            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
+
+            <UserName>Alfreds Futterkiste</UserName>
+            </UserContainer>
+          </TableDesc>
+          <TableDesc>20 feb 22</TableDesc>
+          <TableDesc>200 QAR</TableDesc>
+          <TableDesc><Button status="Declined">Declined</Button></TableDesc>
+        </TableRow>
+        <TableRow>
+          <TableDesc>
+          <UserContainer>
+
+            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
+
+            <UserName>Alfreds Futterkiste</UserName>
+          </UserContainer>
+          </TableDesc>
+          <TableDesc>20 feb 22</TableDesc>
+          <TableDesc>200 QAR</TableDesc>
+          <TableDesc><Button status="">Pending</Button></TableDesc>
+        </TableRow>
+        </TableContainer>
+        
       </Wrapper>
     </Container>
   );
