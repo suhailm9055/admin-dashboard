@@ -12,7 +12,7 @@ import {
   TrendingUp,
   Work,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import {
@@ -50,13 +50,14 @@ const ListItem = styled.li`
   font-weight: 400;
   border-radius: 10px;
   background-color: ${(props) =>
-    props.selection === "active" ? "#c5ffff" : ""};
+    props.selection === "selected" ? "#c5ffff" : ""};
   &:hover {
     background-color: #c5ffff;
   }
 `;
 const IconSize = "18px";
 const marginInline = "10px";
+
 export const Sidebar = () => {
   return (
     <Container>
@@ -65,7 +66,7 @@ export const Sidebar = () => {
           <Title>Dashboard</Title>
           <List>
             <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/">
-            <ListItem selection="active">
+            <ListItem selection="selected">
 
               <Home
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -91,7 +92,7 @@ export const Sidebar = () => {
           <Title>Quick Menu</Title>
           <List>
           <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/users">
-            <ListItem selection="">
+            <ListItem >
               <PermIdentity
                 style={{ fontSize: IconSize, marginInline: marginInline }}
               />

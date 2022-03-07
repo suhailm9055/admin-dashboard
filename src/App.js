@@ -2,7 +2,7 @@ import Topbar from "./components/Topbar";
 import styled from "styled-components";
 import { Sidebar } from "./components/Sidebar";
 import Home from "./pages/Home";
-
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
