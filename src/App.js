@@ -29,7 +29,10 @@ flex:1;
 `;
 const PagesContainer = styled.div`
 margin-top: 10px;
-flex:5;`;
+flex:5;
+
+
+`;
 
 function App() {
   return (
@@ -51,7 +54,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/users">
-            <UsersList />
+            <UsersList type="margin"/>
           </Route>
         </Switch>
         </PagesContainer>

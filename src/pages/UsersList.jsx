@@ -7,6 +7,7 @@ import { userRows } from '../Data';
 import {Link} from "react-router-dom"
 
 
+
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
@@ -112,6 +113,8 @@ const columns = [
 
 
   return (
+    
+
     <DataGrid
     rows={data}
     columns={columns}
@@ -121,7 +124,8 @@ const columns = [
     style={{fontSize:"20px"}}
     disableSelectionOnClick
     disableColumnSelector
-  />
+    />
+   
   )
 }
 
