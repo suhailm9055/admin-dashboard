@@ -8,6 +8,7 @@ import {
   UploadFile,
 } from "@mui/icons-material";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div``;
@@ -15,7 +16,7 @@ const HeadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -87,7 +88,8 @@ const UserDetailsContainer = styled.div`
   display: flex;
 `;
 const Icon = styled.div``;
-const UserInfo = styled.div``;
+const UserInfo = styled.div`
+ font-size: 20px;`;
 const UserEditContainer = styled.div`
   flex: 2;
   padding: 15px 20px;
@@ -96,47 +98,107 @@ const UserEditContainer = styled.div`
   background: linear-gradient(#f4ffff, #c5fdfd5a);
   box-shadow: 0px 0px 15px -10px #000000;
 `;
-const UserEditTitle =styled.div`
- font-size: 24px;
+const UserEditTitle = styled.div`
+  font-size: 24px;
   padding-top: 2px;
   padding-right: 5px;
-  font-weight: 600;`
-const UserEditWrapper =styled.form`
-display: flex;
-justify-content: space-between;`
-const UserEditInputs =styled.div`
-display: flex;
-flex-direction:column;
-flex:1;`
-const Label =styled.label``
-const Input =styled.input`
-border:none;
-color: #6e7474bb;
-border-bottom:1px solid grey;
-background-color: #f0ffff;
+  font-weight: 600;
+`;
+const UserEditWrapper = styled.form`
+  display: flex;
+  justify-content: space-between;
+`;
+const UserEditInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+const Label = styled.label`
+font-size: 18px;`;
+const Input = styled.input`
+  border: none;
+  color: gray;
+  border-bottom: 1px solid #969696ba;
+  background-color: #f0ffff;
+  height: 20px;
+  padding: 10px;
+  border-radius:5px;
+  font-size: 18px;
+  &:hover,:focus{
+  box-shadow: 0px 6px 22px -10px #06d6d6dc;
+  outline:none;
+}
+`;
+const UserEditImg = styled.div`
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10px;
 
-`
-const UserEditImg =styled.div`
-display: flex;
-flex:2;
-flex-direction:column;
-align-items:center ;
+  justify-content: space-between;
+`;
+const UploadImg = styled.img`
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1;
+`;
+const InfoImgHover = styled.div`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000076;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const EditImg = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:hover ${InfoImgHover} {
+    opacity: 1;
+  }
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+ 
+`;
+const ImgButton = styled.div`
+  background-color: #fff;
 
-justify-content:space-between;`
-const UploadImg =styled.img`
-width: 200px;
-height:auto;
-border-radius:10px;`
-const EditImg =styled.div`
-display: flex;
-align-items:center;`
-const ButtonContianer =styled.div`
-display: flex;
-justify-content: center;`
-// const EditImg =styled.div``
-// const EditImg =styled.div``
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  background: #00808073;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #006363;
+  box-shadow: 2px 2px 5px 1px #11111153;
+  transition: all 0.5s ease;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    background: #06d6d697;
+    color: ${(props) => (props.color === "red" ? "red" : "#2b2b2be6")};
+    font-weight: bold;
+  }
+`;
 
-const IconSize = "18px";
+const IconSize = "19px";
 const marginInline = "10px";
 
 const User = () => {
@@ -144,7 +206,9 @@ const User = () => {
     <Container>
       <HeadingContainer>
         <Title>Edit User</Title>
-        <Button>Create</Button>
+        <Link to="/newuser">
+          <Button>Create</Button>
+        </Link>
       </HeadingContainer>
       <Wrapper>
         <UserViewContainer>
@@ -203,33 +267,40 @@ const User = () => {
           </AccountContainer>
         </UserViewContainer>
         <UserEditContainer>
-            <UserEditTitle>Edit</UserEditTitle>
-       <UserEditWrapper>
-           <UserEditInputs>
-               <Label>Username</Label>
-               <Input type="text" placeholder="JonSnow24"></Input>
-               <Label>Full Name</Label>
-               <Input type="text" placeholder="Jon Snow"></Input>
-               <Label>Email</Label>
-               <Input type="email" placeholder="jonsnow24@gmail.com"></Input>
-               <Label>phone</Label>
-               <Input type="number" placeholder="+91 25525 25525"></Input>
-               <Label>Address</Label>
-               <Input type="text" placeholder="Calicut | Kerala"></Input>
-           </UserEditInputs>
-           <UserEditImg>
-               <EditImg>
-                   <UploadImg src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></UploadImg>
-                   
-                   <Label htmlFor="file"><Publish style={{ fontSize: IconSize, marginInline: marginInline ,cursor:"pointer"}}/></Label>
-               <Input type="file" id="file" style={{display:"none"}}></Input>
-               </EditImg>
-               <ButtonContianer>
+          <UserEditTitle>Edit</UserEditTitle>
+          <UserEditWrapper>
+            <UserEditInputs>
+              <Label>Username</Label>
+              <Input type="text" placeholder="JonSnow24"></Input>
+              <Label>Full Name</Label>
+              <Input type="text" placeholder="Jon Snow"></Input>
+              <Label>Email</Label>
+              <Input type="email" placeholder="jonsnow24@gmail.com"></Input>
+              <Label>phone</Label>
+              <Input type="number" placeholder="+91 25525 25525"></Input>
+              <Label>Address</Label>
+              <Input type="text" placeholder="Calicut | Kerala"></Input>
+            </UserEditInputs>
+            <UserEditImg>
+              <EditImg>
+                <InfoImgHover>
+                  <Label htmlFor="file">
+                    <ImgButton>Upload Image</ImgButton>
+                  </Label>
+                </InfoImgHover>
+                <UploadImg src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></UploadImg>
 
-               <Button>Update</Button>
-               </ButtonContianer>
-           </UserEditImg>
-       </UserEditWrapper>
+                <Input
+                  type="file"
+                  id="file"
+                  style={{ display: "none" }}
+                ></Input>
+              </EditImg>
+              <ButtonContainer>
+                <Button>Update</Button>
+              </ButtonContainer>
+            </UserEditImg>
+          </UserEditWrapper>
         </UserEditContainer>
       </Wrapper>
     </Container>

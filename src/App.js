@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import UsersList from "./pages/UsersList";
 import User from "./pages/User";
+import NewUser from "./pages/NewUser";
 
 const MainContainer = styled.div`
 
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path="/user/:UserId">
             <User />
+          </Route>
+          <Route path="/newuser">
+            <NewUser />
           </Route>
         </Switch>
         </PagesContainer>
