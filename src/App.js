@@ -10,6 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import UsersList from "./pages/UsersList";
+import User from "./pages/User";
 
 const MainContainer = styled.div`
 
@@ -30,8 +31,6 @@ flex:1;
 const PagesContainer = styled.div`
 margin-top: 10px;
 flex:5;
-
-
 `;
 
 function App() {
@@ -54,7 +53,10 @@ function App() {
             <Home />
           </Route>
           <Route path="/users">
-            <UsersList type="margin"/>
+            <UsersList />
+          </Route>
+          <Route path="/user/:UserId">
+            <User />
           </Route>
         </Switch>
         </PagesContainer>
