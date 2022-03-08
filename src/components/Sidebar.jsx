@@ -15,10 +15,8 @@ import {
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import {
-  
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import MenuItem from "./MenuItem";
 const Container = styled.div`
   background-color: #f4ffff;
   height: calc(100vh - 50px);
@@ -59,21 +57,37 @@ const IconSize = "18px";
 const marginInline = "10px";
 
 export const Sidebar = () => {
+  const [selection1, setSelection] = useState("Home");
+  console.log(selection1);
   return (
     <Container>
       <Wrapper>
         <Menu>
           <Title>Dashboard</Title>
           <List>
-            <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/">
-            <ListItem selection="selected">
-
-              <Home
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-                />
-              Home
-            </ListItem>
-                </Link>
+            <Link
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              to="/"
+            >
+              {selection1 === "Home" ? (
+                <ListItem style={{ backgroundColor: "#c5ffff" }}>
+                  {" "}
+                  <Home
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Home
+                </ListItem>
+              ) : (
+                <ListItem onClick={() => setSelection("Home")}>
+                  <Home
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Home
+                </ListItem>
+              )}
+            </Link>
+            
+          
             <ListItem>
               <Timeline
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -91,14 +105,27 @@ export const Sidebar = () => {
         <Menu>
           <Title>Quick Menu</Title>
           <List>
-          <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to="/users">
-            <ListItem >
-              <PermIdentity
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
-              Users
-            </ListItem>
-            </Link>
+          <Link
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              to="/users"
+            >
+              {selection1 === "Users" ? (
+                <ListItem style={{ backgroundColor: "#c5ffff" }}>
+                  {" "}
+                  <PermIdentity
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Users
+                </ListItem>
+              ) : (
+                <ListItem onClick={() => setSelection("Users")}>
+                  <PermIdentity
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Users
+                </ListItem>
+              )}
+              </Link>
             <ListItem>
               <LocalMall
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -157,6 +184,7 @@ export const Sidebar = () => {
               />
               Analytics
             </ListItem>
+              <MenuItem selected="users" onClick={() => setSelection("null")}/>
             <ListItem>
               <Report
                 style={{ fontSize: IconSize, marginInline: marginInline }}
