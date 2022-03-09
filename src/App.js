@@ -12,6 +12,9 @@ import {
 import UsersList from "./pages/UsersList";
 import User from "./pages/User";
 import NewUser from "./pages/NewUser";
+import Products from "./pages/Products";
+import Product from "./pages/Product";
+import AddProduct from "./pages/AddProduct";
 
 const MainContainer = styled.div`
 
@@ -59,8 +62,17 @@ function App() {
           <Route path="/user/:UserId">
             <User />
           </Route>
-          <Route path="/newuser">
+          <Route path="/adduser">
             <NewUser />
+          </Route>
+          <Route path="/products">
+            <Products />
+          </Route>
+          <Route path="/product/:productId">
+            <Product />
+          </Route>
+          <Route path="/addproduct">
+            <AddProduct />
           </Route>
         </Switch>
         </PagesContainer>

@@ -53,14 +53,14 @@ const MenuItem = (menu) => {
                   <PermIdentity
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                     />
-                  Users
+                  {menu.selected}
                 </ListItem>
               ) : (
                   <ListItem onClick={() => setSelection(menu.selected)}>
                   <PermIdentity
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                     />
-                  Users
+                  {menu.selected}
                 </ListItem>
               )}
               </Link>

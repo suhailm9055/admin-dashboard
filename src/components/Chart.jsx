@@ -12,7 +12,8 @@ import {
 } from "recharts";
 
 const Container = styled.div`
-  /* width:fit-content; */
+  height: 96%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,6 +21,8 @@ const Container = styled.div`
 `;
 const Item = styled.div`
   flex: 1;
+  height: -webkit-fill-available;
+
   margin: 5px 20px;
   padding: 25px 50px;
   border-radius: 10px;

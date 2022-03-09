@@ -57,7 +57,7 @@ const IconSize = "18px";
 const marginInline = "10px";
 
 export const Sidebar = () => {
-  const [selection1, setSelection] = useState("Home");
+  const [selection1, setSelection1] = useState("Home");
   console.log(selection1);
   return (
     <Container>
@@ -78,7 +78,7 @@ export const Sidebar = () => {
                   Home
                 </ListItem>
               ) : (
-                <ListItem onClick={() => setSelection("Home")}>
+                <ListItem onClick={() => setSelection1("Home")}>
                   <Home
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                   />
@@ -118,7 +118,7 @@ export const Sidebar = () => {
                   Users
                 </ListItem>
               ) : (
-                <ListItem onClick={() => setSelection("Users")}>
+                <ListItem onClick={() => setSelection1("Users")}>
                   <PermIdentity
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                   />
@@ -126,12 +126,28 @@ export const Sidebar = () => {
                 </ListItem>
               )}
               </Link>
-            <ListItem>
-              <LocalMall
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
-              Products
-            </ListItem>
+          <Link
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              to="/products"
+            >
+              {selection1 === "products" ? (
+                <ListItem style={{ backgroundColor: "#c5ffff" }}>
+                  {" "}
+                  <LocalMall
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Products
+                </ListItem>
+              ) : (
+                <ListItem onClick={() => setSelection1("products")}>
+                  <LocalMall
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Products
+                </ListItem>
+              )}
+              </Link>
+       
             <ListItem>
               <CurrencyRupeeSharp
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -184,11 +200,10 @@ export const Sidebar = () => {
               />
               Analytics
             </ListItem>
-              <MenuItem selected="users" onClick={() => setSelection("null")}/>
             <ListItem>
               <Report
                 style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
+                />
               Reports
             </ListItem>
           </List>
@@ -197,3 +212,10 @@ export const Sidebar = () => {
     </Container>
   );
 };
+
+                {/* <ListItem>
+                  <MenuItem selected="users" onClick={() => setSelection1("null")}/>
+                </ListItem>
+                <ListItem>
+                  <MenuItem selected="home" onClick={() => setSelection1("null")}/>
+                </ListItem> */}
