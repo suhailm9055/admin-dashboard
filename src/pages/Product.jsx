@@ -209,16 +209,17 @@ transition: all 0.5s ease;
 const Select =styled.select`
 border: none;
 color: gray;
-border-bottom: 1px solid #969696ba;
 background-color: #f0ffff;
-height: 20px;
+border-bottom: 1px solid #969696ba;
+height: 40px;
 padding: 10px;
 border-radius:5px;
 font-size: 18px;
-&:hover,:focus{
+&:hover:focus{
 box-shadow: 0px 6px 22px -10px #06d6d6dc;
 outline:none;
-}`
+}
+`
 const Option =styled.option`
 `
 const Product = () => {
@@ -272,15 +273,17 @@ const Product = () => {
               <Input type="text" placeholder="Kurta"></Input>
               <Label>Product Details</Label>
               <Input type="text" placeholder="Men Kurta and Pyjama Set Cotton Blend"></Input>
+              <Label>Price</Label>
+              <Input type="number" placeholder="250"></Input>
               <Label>Active</Label>
              <Select name='active' id='active' >
-               <Option value="yes">Yes</Option>
+               <Option value="yes" selected>Yes</Option>
                <Option value="no">No</Option>
                </Select>
               <Label>In Stock</Label>
              <Select name='instock' id='instock' >
-               <Option value="yes">Yes</Option>
-               <Option value="no">No</Option>
+               <Option value="yes" >Yes</Option>
+               <Option value="no" selected>No</Option>
                </Select>
               
             </UserEditInputs>
