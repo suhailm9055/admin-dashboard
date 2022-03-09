@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Chart from '../components/Chart'
 import { productData } from '../Data'
@@ -227,7 +228,9 @@ const Product = () => {
     <Container>
       <HeaderContainer>
         <HeaderTitle>Product</HeaderTitle>
+        <Link to="/addproduct">
         <HeaderButton>Create</HeaderButton>
+        </Link>
 
       </HeaderContainer>
       <Wrapper>
