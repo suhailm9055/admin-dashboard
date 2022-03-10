@@ -46,11 +46,7 @@ display: flex;
 const LeftContainer = styled.div`
 flex: 1;
 
-  /* padding: 15px 20px;
-  border-radius: 10px;
-
-  background: linear-gradient(#f4ffff, #c5fdfd5a);
-  box-shadow: 0px 0px 15px -10px #000000; */
+ 
 `
 const RightContainer = styled.div`
 flex: 1;

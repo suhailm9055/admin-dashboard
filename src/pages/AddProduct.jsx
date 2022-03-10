@@ -5,34 +5,6 @@ flex: 1;
   padding: 15px 20px;
   `
 
-const ProductInfo = styled.div`
- display: flex;
- align-items:center;
- margin-bottom:10px;`
-const Img = styled.img`
- width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 20px;
-  object-fit: cover;`
-const Title = styled.div`
- font-size: 24px;
-  font-weight: 600;`
-const ProductDetails = styled.div`
-width:25%;
- display: flex;
- flex-direction:column ;
- margin:15px  15px 0 15px;
- `
-const ProductKey = styled.h3`
-font-size: 20px;
-  color: gray;
-  font-weight: 500;`
-const ProductDetailItem = styled.div`
-display: flex;
-justify-content: space-between;
-`
-  
 
 
 

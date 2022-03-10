@@ -1,13 +1,8 @@
-import { Visibility } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  /* display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 5px 1px;
-  width: 100%; */
+  
   flex: 2;
 `;
 
@@ -36,21 +31,21 @@ const Img = styled.img`
   margin-right: 20px;
   object-fit: cover;
 `;
-const UserDetails = styled.div`
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  margin-right: 20px;
-`;
+// const UserDetails = styled.div`
+//   display: flex;
+//   align-items: stretch;
+//   flex-direction: column;
+//   margin-right: 20px;
+// `;
 const UserName = styled.span`
   font-size: 18px;
   font-weight: 600;
 `;
-const UserTitle = styled.h5`
-  font-size: 15px;
-  color: gray;
-  height: 20px;
-`;
+// const UserTitle = styled.h5`
+//   font-size: 15px;
+//   color: gray;
+//   height: 20px;
+// `;
 const Button = styled.button`
   display: flex;
   min-width:100%;
@@ -70,11 +65,11 @@ const Button = styled.button`
   } */
 `;
 
-const ButtonText = styled.p`
-  font-size: 18px;
-  padding-top: 2px;
-  padding-right: 5px;
-`;
+// const ButtonText = styled.p`
+//   font-size: 18px;
+//   padding-top: 2px;
+//   padding-right: 5px;
+// `;
 const TableContainer = styled.table`
 width: 100%;
 border-spacing:20px;
