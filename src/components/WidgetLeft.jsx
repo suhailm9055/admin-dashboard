@@ -1,6 +1,8 @@
 import { Visibility } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { userRequest } from "../../src/requestMethods";
 
 const Container = styled.div`
   /* display: flex;
@@ -8,12 +10,11 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 5px 1px; */
-  flex:1;
-  margin-right:10px;
+  flex: 1;
+  margin-right: 10px;
 `;
 
 const Wrapper = styled.div`
-  
   /* margin: 5px 5px 5px 29px; */
   padding: 15px 20px;
   border-radius: 10px;
@@ -26,10 +27,13 @@ const Title = styled.h3`
   font-size: 23px;
   color: #6e7474;
 `;
-const UserContainer = styled.div`
+const UserList = styled.ul`
+
+`
+const UserContainerLi = styled.li`
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   margin: 10px 15px;
 `;
 const Img = styled.img`
@@ -76,69 +80,47 @@ const ButtonText = styled.p`
   padding-right: 5px;
 `;
 
-const IconSize = "17px"; 
-const marginRight = "10px"; 
+const IconSize = "17px";
+const marginRight = "10px";
 export const WidgetLeft = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await userRequest.get("/users");
+        setUsers(res.data);
+      } catch {}
+    };
+    getUsers();
+  }, []);
+  
+
   return (
     <Container>
       <Wrapper>
         <Title>New Members</Title>
-        <UserContainer>
-          <Img src="https://images.pexels.com/photos/4355346/pexels-photo-4355346.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Img>
+        <UserList>
+          {users.map(user=>(
+
+        <UserContainerLi  key={user._id}>
+          <Img src={user.img || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}></Img>
           <UserDetails>
-            <UserName>Murat Esibatir</UserName>
-            <UserTitle>Photographer</UserTitle>
+            <UserName>{user.username}</UserName>
+            {/* <UserTitle>Photographer</UserTitle> */}
+            {console.log(user)}
           </UserDetails>
           <Button>
-            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
+            <Visibility
+              style={{ fontSize: IconSize, marginRight: marginRight }}
+              />
             <ButtonText>Display</ButtonText>{" "}
           </Button>
-        </UserContainer>
-        
-        <UserContainer>
-          <Img src="https://images.pexels.com/photos/4355346/pexels-photo-4355346.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Img>
-          <UserDetails>
-            <UserName>Murat Esibatir</UserName>
-            <UserTitle>Photographer</UserTitle>
-          </UserDetails>
-          <Button>
-            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
-            <ButtonText>Display</ButtonText>{" "}
-          </Button>
-        </UserContainer>
-        <UserContainer>
-          <Img src="https://images.pexels.com/photos/4355346/pexels-photo-4355346.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Img>
-          <UserDetails>
-            <UserName>Murat Esibatir</UserName>
-            <UserTitle>Photographer</UserTitle>
-          </UserDetails>
-          <Button>
-            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
-            <ButtonText>Display</ButtonText>{" "}
-          </Button>
-        </UserContainer>
-        <UserContainer>
-          <Img src="https://images.pexels.com/photos/4355346/pexels-photo-4355346.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Img>
-          <UserDetails>
-            <UserName>Murat Esibatir</UserName>
-            <UserTitle>Photographer</UserTitle>
-          </UserDetails>
-          <Button>
-            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
-            <ButtonText>Display</ButtonText>{" "}
-          </Button>
-        </UserContainer>
-        <UserContainer>
-          <Img src="https://images.pexels.com/photos/4355346/pexels-photo-4355346.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Img>
-          <UserDetails>
-            <UserName>Murat Esibatir</UserName>
-            <UserTitle>Photographer</UserTitle>
-          </UserDetails>
-          <Button>
-            <Visibility style={{ fontSize: IconSize, marginRight: marginRight }} />
-            <ButtonText>Display</ButtonText>{" "}
-          </Button>
-        </UserContainer>
+        </UserContainerLi>
+          ))}
+
+       
+              </UserList>
       </Wrapper>
     </Container>
   );

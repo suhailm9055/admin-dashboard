@@ -58,7 +58,6 @@ const marginInline = "10px";
 
 export const Sidebar = () => {
   const [selection1, setSelection1] = useState("Home");
-  console.log(selection1);
   return (
     <Container>
       <Wrapper>

@@ -31,9 +31,10 @@ const PagesContainer = styled.div`
 `;
 
 function App() {
-  const admin =  (JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser)?.isAdmin)
-  console.log(admin);
-  return (
+  const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+  const currentUser = user && JSON.parse(user).currentUser;
+  const admin = currentUser?.isAdmin;
+    return (
     <Router>
         <Switch>
          <Route path="/login">
@@ -78,7 +79,7 @@ function App() {
         
       </MainContainer>
       </>
-      }
+      } 
         </Switch>
     </Router>
   );

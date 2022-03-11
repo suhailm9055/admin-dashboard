@@ -18,8 +18,8 @@ const persistConfig = {
   version: 1,
   storage,
 };
-// const rootReducer = combineReducers({user:userReducer,cart:cartReducer})
-const persistedReducer = persistReducer(persistConfig, userReducer);
+const rootReducer = combineReducers({user:userReducer})
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
