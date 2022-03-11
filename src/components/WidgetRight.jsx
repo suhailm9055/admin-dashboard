@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
+import { userRequest } from "../requestMethods";
+import { format } from "timeago.js";
 
 const Container = styled.div`
   
@@ -53,8 +56,8 @@ const Button = styled.button`
   justify-content: center;
   border: none;
   border-radius: 10px;
-  background-color:${props=>props.status==="Approved" ?"#d1ffe8":props=>props.status==="Declined"?"#ffc6c6":"#b9ddff"} ;
-  color: ${props=>props.status==="Approved" ?"#23a765":props=>props.status==="Declined"?"#b32626":"#206aaf"} ;
+  background-color:${props=>props.status==="approved" ?"#d1ffe8":props=>props.status==="declined"?"#ffc6c6":"#b9ddff"} ;
+  color: ${props=>props.status==="approved" ?"#23a765":props=>props.status==="declined"?"#b32626":"#206aaf"} ;
   padding: 1px 2px;
   font-size: 18px;
 
@@ -83,58 +86,47 @@ font-weight: 300;
 `;
 
 export const WidgetRight = () => {
+const [orders,setOrders]= useState([]);
+useEffect(()=>{
+  const getOrders = async ()=>{
+
+    try{
+  const res = await userRequest.get("orders/all");
+  setOrders(res.data)
+    }catch{}
+  }
+  getOrders();
+},[orders])
+
   return (
     <Container>
       <Wrapper>
         <Title>Latest Transactions</Title>
         <TableContainer>
 
-        <TableRow>
+          <TableRow>
           <TableHead>Customer</TableHead>
           <TableHead>Date</TableHead>
           <TableHead>Amount</TableHead>
           <TableHead>Status</TableHead>
         </TableRow>
-        <TableRow>
+
+        {orders.map(order=>(
+        <TableRow key={order._id}>
           <TableDesc>
           <UserContainer>
 
-            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
+            {/* <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img> */}
 
-            <UserName>Alfreds Futterkiste</UserName>
+            <UserName>{order.userId}</UserName>
           </UserContainer>
           </TableDesc>
-          <TableDesc>20 feb 22</TableDesc>
-          <TableDesc>200 QAR</TableDesc>
-          <TableDesc><Button status="Approved">Approved</Button></TableDesc>
+          <TableDesc>{format(order.createdAt)}</TableDesc>
+          <TableDesc>{order.amount} QAR</TableDesc>
+          <TableDesc><Button status={order.status}>{order.status}</Button></TableDesc>
         </TableRow>
-        <TableRow>
-          <TableDesc>
-            <UserContainer>
-              
-            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
-
-            <UserName>Alfreds Futterkiste</UserName>
-            </UserContainer>
-          </TableDesc>
-          <TableDesc>20 feb 22</TableDesc>
-          <TableDesc>200 QAR</TableDesc>
-          <TableDesc><Button status="Declined">Declined</Button></TableDesc>
-        </TableRow>
-        <TableRow>
-          <TableDesc>
-          <UserContainer>
-
-            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
-
-            <UserName>Alfreds Futterkiste</UserName>
-          </UserContainer>
-          </TableDesc>
-          <TableDesc>20 feb 22</TableDesc>
-          <TableDesc>200 QAR</TableDesc>
-          <TableDesc><Button status="">Pending</Button></TableDesc>
-        </TableRow>
-        </TableContainer>
+                ))}
+                </TableContainer>
         
       </Wrapper>
     </Container>
