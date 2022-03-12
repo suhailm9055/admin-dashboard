@@ -1,11 +1,13 @@
 
-import React, { useState } from 'react'
+import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import styled from 'styled-components';
 import { Edit } from '@material-ui/icons';
 import { Delete } from '@material-ui/icons';
-import { productRows } from '../Data';
 import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { deleteProduct, getProducts } from '../redux/apiCalls';
 
 
 const ProductContainer = styled.div`
@@ -53,31 +55,32 @@ const IconContainer = styled.div`
 `;
 
 const Products = () => {
-    const [data,setdata]=useState(productRows)
   const handleDelete =  (id)=>{
-    setdata(data.filter(items=>items.id !==id))
+    deleteProduct(id,dispatch)
   }
+  const dispatch =useDispatch()
+const products = useSelector((state)=>state.product.products)
+  useEffect(()=>{
+    getProducts(dispatch)
+  },[dispatch])
+  
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: '_id', headerName: 'ID', width: 200 },
     { field: 'product', headerName: 'Product', width: 200 , renderCell:(params)=>{
       return(
         <ProductContainer>
             <Img src={params.row.img}></Img>
             <ProductDetails>
-              <ProductName>{params.row.name}</ProductName>
-              <ProductTitle>Men</ProductTitle>
+              <ProductName>{params.row.title}</ProductName>
+              {/* <ProductTitle>{params.row.title}</ProductTitle> */}
             </ProductDetails>
           
           </ProductContainer>
       )
     }},
-    { field: 'stock', headerName: 'Stock', width: 130 },
-    {
-      field: 'status',
-      headerName: 'Status',
-      width: 90,
-    },
+    { field: 'inStock', headerName: 'Stock', width: 130 },
+    
     {
       field: 'price',
       headerName: 'Price',
@@ -102,7 +105,7 @@ const Products = () => {
       renderCell:(params)=>{
         return(
           
-          <IconContainer type="danger" onClick={()=>handleDelete(params.row.id)}><Delete/></IconContainer>
+          <IconContainer type="danger" onClick={()=>handleDelete(params.row._id)}><Delete/></IconContainer>
          
         )
       }
@@ -110,9 +113,10 @@ const Products = () => {
   ];
   return (
     <DataGrid
-    rows={data}
+    rows={products}
     columns={columns}
     pageSize={8}
+    getRowId={(rows)=>rows._id}
     rowsPerPageOptions={[6]}
     checkboxSelection
     style={{fontSize:"20px"}}
