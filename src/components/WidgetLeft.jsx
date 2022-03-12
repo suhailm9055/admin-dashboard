@@ -27,9 +27,7 @@ const Title = styled.h3`
   font-size: 23px;
   color: #6e7474;
 `;
-const UserList = styled.ul`
-
-`
+const UserList = styled.ul``;
 const UserContainerLi = styled.li`
   display: flex;
   align-items: center;
@@ -94,33 +92,33 @@ export const WidgetLeft = () => {
     };
     getUsers();
   }, []);
-  
 
   return (
     <Container>
       <Wrapper>
         <Title>New Members</Title>
         <UserList>
-          {users.map(user=>(
-
-        <UserContainerLi  key={user._id}>
-          <Img src={user.img || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}></Img>
-          <UserDetails>
-            <UserName>{user.username}</UserName>
-            {/* <UserTitle>Photographer</UserTitle> */}
-            {console.log(user)}
-          </UserDetails>
-          <Button>
-            <Visibility
-              style={{ fontSize: IconSize, marginRight: marginRight }}
-              />
-            <ButtonText>Display</ButtonText>{" "}
-          </Button>
-        </UserContainerLi>
+          {users.map((user) => (
+            <UserContainerLi key={user._id}>
+              <Img
+                src={
+                  user.img ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                }
+              ></Img>
+              <UserDetails>
+                <UserName>{user.username}</UserName>
+                {/* <UserTitle>Photographer</UserTitle> */}
+              </UserDetails>
+              <Button>
+                <Visibility
+                  style={{ fontSize: IconSize, marginRight: marginRight }}
+                />
+                <ButtonText>Display</ButtonText>{" "}
+              </Button>
+            </UserContainerLi>
           ))}
-
-       
-              </UserList>
+        </UserList>
       </Wrapper>
     </Container>
   );

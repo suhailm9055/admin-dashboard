@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {
   ArrowDownward,
@@ -6,6 +6,8 @@ import {
   CurrencyRupee,
   CurrencyRupeeOutlined,
 } from "@mui/icons-material";
+import { userRequest } from "../requestMethods";
+import { useState } from "react";
 
 const Container = styled.div`
 /* width: 90%; */
@@ -19,7 +21,6 @@ flex: 1;
 margin: 5px 20px;
 padding: 25px 50px;
 border-radius:10px;
-cursor: pointer;
 background: linear-gradient(#f4ffff,#c5fdfd5a);
 box-shadow: 0px 0px 15px -10px #000000;
 `;
@@ -50,17 +51,37 @@ const Subtitle = styled.p`
 
 `
 const FeaturedInfo = () => {
+  const [income, setIncome] = useState([]);
+  const [percent, setPercent] = useState(0);
+
+  useEffect(()=>{
+    const getIncome = async ()=>{
+      try{
+          const res = await userRequest.get("orders/income");
+          setIncome(res.data[1])
+          setPercent((res.data[1].total*100) / res.data[0].total-100)
+
+      }catch{}
+    }
+    getIncome()
+  },[])
+// console.log(income)
+// console.log(percent)
   return (
     <Container>
       <Item>
         <Title> Revenue</Title>
         <MoneyContainer>
           <Money>
-            <CurrencyRupeeOutlined /> 2,458{" "}
+            <CurrencyRupeeOutlined /> {income.total}
           </Money>
           <MoneyRate trend="up">
-            +2.14
-            <ArrowUpward />
+            {Math.floor(percent)}%
+           {percent>0?
+          <ArrowUpward  style={{color:"#10b44f"}}/>:
+          <ArrowDownward style={{color:"#eb4c4c"}}/>
+          } 
+             
           </MoneyRate>
         </MoneyContainer>
         <Subtitle>

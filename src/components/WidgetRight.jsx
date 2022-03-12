@@ -5,7 +5,6 @@ import { userRequest } from "../requestMethods";
 import { format } from "timeago.js";
 
 const Container = styled.div`
-  
   flex: 2;
 `;
 
@@ -51,13 +50,19 @@ const UserName = styled.span`
 // `;
 const Button = styled.button`
   display: flex;
-  min-width:100%;
+  min-width: 100%;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 10px;
-  background-color:${props=>props.status==="approved" ?"#d1ffe8":props=>props.status==="declined"?"#ffc6c6":"#b9ddff"} ;
-  color: ${props=>props.status==="approved" ?"#23a765":props=>props.status==="declined"?"#b32626":"#206aaf"} ;
+  background-color: ${(props) =>
+    props.status === "approved"
+      ? "#d1ffe8"
+      : (props) => (props.status === "declined" ? "#ffc6c6" : "#b9ddff")};
+  color: ${(props) =>
+    props.status === "approved"
+      ? "#23a765"
+      : (props) => (props.status === "declined" ? "#b32626" : "#206aaf")};
   padding: 1px 2px;
   font-size: 18px;
 
@@ -74,60 +79,58 @@ const Button = styled.button`
 //   padding-right: 5px;
 // `;
 const TableContainer = styled.table`
-width: 100%;
-border-spacing:20px;
+  width: 100%;
+  border-spacing: 20px;
 `;
-const TableRow = styled.tr`
-`
+const TableRow = styled.tr``;
 const TableHead = styled.th`
-text-align:left;`;
+  text-align: left;
+`;
 const TableDesc = styled.td`
-font-weight: 300;
+  font-weight: 300;
 `;
 
 export const WidgetRight = () => {
-const [orders,setOrders]= useState([]);
-useEffect(()=>{
-  const getOrders = async ()=>{
-
-    try{
-  const res = await userRequest.get("orders/all");
-  setOrders(res.data)
-    }catch{}
-  }
-  getOrders();
-},[orders])
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    const getOrders = async () => {
+      try {
+        const res = await userRequest.get("orders/all");
+        setOrders(res.data);
+      } catch {}
+    };
+    getOrders();
+  }, []);
 
   return (
     <Container>
       <Wrapper>
         <Title>Latest Transactions</Title>
         <TableContainer>
-
           <TableRow>
-          <TableHead>Customer</TableHead>
-          <TableHead>Date</TableHead>
-          <TableHead>Amount</TableHead>
-          <TableHead>Status</TableHead>
-        </TableRow>
+            <TableHead>Customer</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Amount</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
 
-        {orders.map(order=>(
-        <TableRow key={order._id}>
-          <TableDesc>
-          <UserContainer>
+          {orders.map((order) => (
+            <TableRow key={order._id}>
+              <TableDesc>
+                <UserContainer>
+                  {/* <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img> */}
 
-            {/* <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img> */}
-
-            <UserName>{order.userId}</UserName>
-          </UserContainer>
-          </TableDesc>
-          <TableDesc>{format(order.createdAt)}</TableDesc>
-          <TableDesc>{order.amount} QAR</TableDesc>
-          <TableDesc><Button status={order.status}>{order.status}</Button></TableDesc>
-        </TableRow>
-                ))}
-                </TableContainer>
-        
+                  <UserName>{order.userId}</UserName>
+                </UserContainer>
+              </TableDesc>
+              <TableDesc>{format(order.createdAt)}</TableDesc>
+              <TableDesc>{order.amount} QAR</TableDesc>
+              <TableDesc>
+                <Button status={order.status}>{order.status}</Button>
+              </TableDesc>
+            </TableRow>
+          ))}
+        </TableContainer>
       </Wrapper>
     </Container>
   );
