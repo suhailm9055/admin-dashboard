@@ -15,7 +15,7 @@ import {
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuItem from "./MenuItem";
 const Container = styled.div`
   background-color: #f4ffff;
@@ -57,7 +57,10 @@ const IconSize = "18px";
 const marginInline = "10px";
 
 export const Sidebar = () => {
-  const [selection1, setSelection1] = useState("Home");
+  const location = useLocation();
+
+  const page = location.pathname.split("/")[1];
+  const [selection1, setSelection1] = useState(page);
   return (
     <Container>
       <Wrapper>
@@ -68,7 +71,7 @@ export const Sidebar = () => {
               style={{ color: "inherit", textDecoration: "inherit" }}
               to="/"
             >
-              {selection1 === "Home" ? (
+              {selection1 === "" ? (
                 <ListItem style={{ backgroundColor: "#c5ffff" }}>
                   {" "}
                   <Home
@@ -77,7 +80,7 @@ export const Sidebar = () => {
                   Home
                 </ListItem>
               ) : (
-                <ListItem onClick={() => setSelection1("Home")}>
+                <ListItem onClick={() => setSelection1("")}>
                   <Home
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                   />
@@ -85,8 +88,7 @@ export const Sidebar = () => {
                 </ListItem>
               )}
             </Link>
-            
-          
+
             <ListItem>
               <Timeline
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -104,11 +106,11 @@ export const Sidebar = () => {
         <Menu>
           <Title>Quick Menu</Title>
           <List>
-          <Link
+            <Link
               style={{ color: "inherit", textDecoration: "inherit" }}
               to="/users"
             >
-              {selection1 === "Users" ? (
+              {selection1 === "users" ? (
                 <ListItem style={{ backgroundColor: "#c5ffff" }}>
                   {" "}
                   <PermIdentity
@@ -117,19 +119,19 @@ export const Sidebar = () => {
                   Users
                 </ListItem>
               ) : (
-                <ListItem onClick={() => setSelection1("Users")}>
+                <ListItem onClick={() => setSelection1("users")}>
                   <PermIdentity
                     style={{ fontSize: IconSize, marginInline: marginInline }}
                   />
                   Users
                 </ListItem>
               )}
-              </Link>
-          <Link
+            </Link>
+            <Link
               style={{ color: "inherit", textDecoration: "inherit" }}
               to="/products"
             >
-              {selection1 === "products" ? (
+              {selection1 === ("products"||"product") ? (
                 <ListItem style={{ backgroundColor: "#c5ffff" }}>
                   {" "}
                   <LocalMall
@@ -145,8 +147,8 @@ export const Sidebar = () => {
                   Products
                 </ListItem>
               )}
-              </Link>
-       
+            </Link>
+
             <ListItem>
               <CurrencyRupeeSharp
                 style={{ fontSize: IconSize, marginInline: marginInline }}
@@ -202,7 +204,7 @@ export const Sidebar = () => {
             <ListItem>
               <Report
                 style={{ fontSize: IconSize, marginInline: marginInline }}
-                />
+              />
               Reports
             </ListItem>
           </List>
@@ -212,9 +214,9 @@ export const Sidebar = () => {
   );
 };
 
-              // {/* <ListItem>
-              //     <MenuItem selected="users" onClick={() => setSelection1("null")}/>
-              //   </ListItem>
-              //   <ListItem>
-              //     <MenuItem selected="home" onClick={() => setSelection1("null")}/>
-              //   </ListItem> 
+// {/* <ListItem>
+//     <MenuItem selected="users" onClick={() => setSelection1("null")}/>
+//   </ListItem>
+//   <ListItem>
+//     <MenuItem selected="home" onClick={() => setSelection1("null")}/>
+//   </ListItem>

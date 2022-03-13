@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 const BottomContainer = styled.form`
 flex: 1;
@@ -154,6 +156,22 @@ padding: 3px 7px;
 const Option =styled.option`
 `
 const AddProduct = () => {
+const [inputs, setInputs] = useState({})
+const [cat, setCat] = useState([])
+const [file, setFile] = useState([])
+
+const handleChange=(e)=>{
+    e.preventDefault();
+    setInputs((prev)=>{
+      return{...prev,[e.target.name]:e.target.value}
+    })
+  }
+ const handleCat=(e)=>{
+    e.preventDefault();
+    setCat(e.target.value.split(","))
+  }
+  // const [product,setProduct]=useState({inputs,categories:cat,img:file})
+  console.log(cat)
   return (
     <BottomContainer>
     <UserEditContainer>
@@ -161,18 +179,16 @@ const AddProduct = () => {
       <UserEditWrapper>
         <UserEditInputs>
           <Label>Product Name</Label>
-          <Input type="text" ></Input>
+          <Input type="text" name='title' onChange={handleChange}></Input>
           <Label>Product Details</Label>
-          <Input type="text" ></Input>
+          <Input type="text" name='desc' onChange={handleChange}></Input>
           <Label>Price</Label>
-          <Input type="number" ></Input>
-          <Label>Active</Label>
-         <Select name='active' id='active' >
-           <Option value="yes" selected>Yes</Option>
-           <Option value="no">No</Option>
-           </Select>
+          <Input type="number" name='price' onChange={handleChange}></Input>
+          <Label>Categories</Label>
+          <Input type="text" name='categories' onChange={handleCat}></Input>
+
           <Label>In Stock</Label>
-         <Select name='instock' id='instock' >
+         <Select name='inStock' id='inStock'  onChange={handleChange}>
            <Option value="yes" selected>Yes</Option>
            <Option value="no" >No</Option>
            </Select>
@@ -192,6 +208,7 @@ const AddProduct = () => {
               type="file"
               id="file"
               style={{ display: "none" }}
+              onChange={(e)=> setFile(e.target.files)[0]}
             ></Input>
           </EditImg>
           <ButtonContainer>

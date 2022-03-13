@@ -5,7 +5,6 @@ import Chart from "../components/Chart";
 import FeaturedInfo from "../components/FeaturedInfo";
 import { WidgetLeft } from "../components/WidgetLeft";
 import { WidgetRight } from "../components/WidgetRight";
-import { userData, userRows } from "../Data";
 import {  userRequest } from "../requestMethods";
 
 const Container = styled.div`
@@ -15,6 +14,7 @@ const Container = styled.div`
   /* width: 90%; */
 `;
 const Home = () => {
+
   const [userStats, setUserStats] = useState([]);
 
   const MONTH = useMemo(
@@ -39,7 +39,10 @@ const Home = () => {
     const getUserStats = async () => {
       try {
         const res = await userRequest.get("/users/stats");
-        res.data.map(item=>( 
+        const list = res.data.sort((a,b)=>{
+        return a._id - b._id
+        })  
+        list.map(item=>( 
 
           
           setUserStats((prev)=>(

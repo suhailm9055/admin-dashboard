@@ -1,8 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useMemo } from 'react'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link,useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import Chart from '../components/Chart'
-import { productData } from '../Data'
+import { getProducts, updateProduct } from '../redux/apiCalls'
+import { userRequest } from '../requestMethods'
 
 
 const Container = styled.div``
@@ -220,45 +223,102 @@ outline:none;
 const Option =styled.option`
 `
 const Product = () => {
+
+  const [pStats,setPStats]= useState([])
+
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+  const product = useSelector(state=>state.product.products.find(product=>product._id===productId))
+  const MONTH = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
+  
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await userRequest.get("/orders/income?pid="+productId);
+        const list = res.data.sort((a,b)=>{
+          return a._id - b._id;
+        })
+        list.map(item=>( 
+
+          
+          setPStats((prev)=>(
+            [
+              ...prev,
+              {name:MONTH[item._id-1],"Sales":item.total}
+            ]))
+            ))
+          } catch {}
+        };
+        getStats();
+      },[MONTH]);
+      const dispatch = useDispatch()
+      const [productUpdate,setProductUpdate]=useState(product);
+      useEffect(()=>{
+        getProducts(dispatch)
+      },[])
+const handleChange=(e)=>{
+setProductUpdate(prev=>{
+  return {...prev,[e.target.name]:e.target.value}})
+}
+console.log(productUpdate)
+const handleUpdate=(e)=>{
+  e.preventDefault()
+  getProducts(dispatch)
+  updateProduct(productId,productUpdate,dispatch)
+}
+
   return (
     <Container>
       <HeaderContainer>
         <HeaderTitle>Product</HeaderTitle>
         <Link to="/addproduct">
-        <HeaderButton>Create</HeaderButton>
+        <HeaderButton>Add New Product</HeaderButton>
         </Link>
 
       </HeaderContainer>
       <Wrapper>
         <TopContainer>
           <LeftContainer>
-            <Chart data={productData} title="Sales Performance" dataKey="Product Sales"/>
+            <Chart data={pStats} title="Sales Performance" dataKey="Sales"/>
           </LeftContainer>
           <RightContainer>
             <ProductInfo>
-              <Img src='https://5.imimg.com/data5/GL/BA/SO/SELLER-82846600/men-kurta-pajama-500x500.jpg'/>
-              <Title>Kurta</Title>
+              <Img src={productUpdate.img}/>
+              <Title>{productUpdate.title}</Title>
             </ProductInfo>
             <ProductDetails>
               <ProductDetailItem>
 
               <ProductKey>Id:</ProductKey>
-              <ProductDesc>254</ProductDesc>
+              <ProductDesc>{productUpdate._id}</ProductDesc>
               </ProductDetailItem>
               <ProductDetailItem>
 
               <ProductKey>Sales:</ProductKey>
               <ProductDesc>4254</ProductDesc>
               </ProductDetailItem>
-              <ProductDetailItem>
-
-              <ProductKey>Active:</ProductKey>
-              <ProductDesc>Yes</ProductDesc>
-              </ProductDetailItem>
+              
               <ProductDetailItem>
 
               <ProductKey>In Stock:</ProductKey>
-              <ProductDesc>No</ProductDesc>
+              <ProductDesc>{product.inStock?"Yes":"No"}</ProductDesc>
               </ProductDetailItem>
             </ProductDetails>
           </RightContainer>
@@ -269,21 +329,26 @@ const Product = () => {
           <UserEditWrapper>
             <UserEditInputs>
               <Label>Product Name</Label>
-              <Input type="text" placeholder="Kurta"></Input>
+              <Input type="text" placeholder={productUpdate.title} name="title" onChange={handleChange}></Input>
               <Label>Product Details</Label>
-              <Input type="text" placeholder="Men Kurta and Pyjama Set Cotton Blend"></Input>
+              <Input type="text" placeholder={productUpdate.desc} name="desc"  onChange={handleChange}></Input>
               <Label>Price</Label>
-              <Input type="number" placeholder="250"></Input>
-              <Label>Active</Label>
-             <Select name='active' id='active' >
-               <Option value="yes" selected>Yes</Option>
-               <Option value="no">No</Option>
-               </Select>
+              <Input type="number" placeholder={productUpdate.price} name="price" onChange={handleChange}></Input>
+              
+             
               <Label>In Stock</Label>
-             <Select name='instock' id='instock' >
-               <Option value="yes" >Yes</Option>
-               <Option value="no" selected>No</Option>
+              {productUpdate.inStock ? <Select name="inStock" id='inStock' onChange={handleChange}>
+               <Option value="true" selected>yes</Option>
+               <Option value="false" >no</Option>
                </Select>
+               :
+               <Select name="inStock" id='inStock' onChange={handleChange}>
+               <Option value="true" >yes</Option>
+               <Option value="false" selected>no</Option>
+               
+               </Select>
+               }
+               
               
             </UserEditInputs>
             <UserEditImg>
@@ -293,7 +358,7 @@ const Product = () => {
                     <ImgButton>Upload Image</ImgButton>
                   </Label>
                 </InfoImgHover>
-                <UploadImg src="https://5.imimg.com/data5/GL/BA/SO/SELLER-82846600/men-kurta-pajama-500x500.jpg"></UploadImg>
+                <UploadImg src={productUpdate.img}></UploadImg>
 
                 <Input
                   type="file"
@@ -302,7 +367,7 @@ const Product = () => {
                 ></Input>
               </EditImg>
               <ButtonContainer>
-                <HeaderButton>Update</HeaderButton>
+                <HeaderButton onClick={handleUpdate}>Update</HeaderButton>
               </ButtonContainer>
             </UserEditImg>
           </UserEditWrapper>
