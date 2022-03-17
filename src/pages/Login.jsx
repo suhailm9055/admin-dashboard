@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { mobile, tablet } from "../Responsive";
 // import Navbar from "../components/Navbar";
 import { login } from "../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import Topbar from "../components/Topbar";
+import { Home } from "@mui/icons-material";
+import { Redirect, useHistory } from "react-router-dom";
 
 
-const Button=styled.button`
+const Button = styled.button`
 
 padding: 5px 15px;
 padding-top: 7px;
@@ -30,7 +32,7 @@ transition: all 0.5s ease;
     font-weight: bold;
     
 }
-${mobile({width:"120px"})};
+${mobile({ width: "120px" })};
 &:disabled{
   font-weight: 200;
       color:#ffffff65;
@@ -42,7 +44,7 @@ ${mobile({width:"120px"})};
 `
 
 
-const Container=styled.div`
+const Container = styled.div`
 width:100vw;
 height:90.1vh;
 background:linear-gradient(to right,#adadad97,#2c2c2cd1), url("https://images.pexels.com/photos/5704412/pexels-photo-5704412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
@@ -51,9 +53,9 @@ background-size:center;
 align-items:center;
   justify-content:center;
  
-       cursor:${props=>props.isFetching && "progress"};
+       cursor:${props => props.isFetching && "progress"};
          `
-const Wrapper=styled.div`
+const Wrapper = styled.div`
 width:30%;
 padding:20px;
 background:linear-gradient(#fffdfdb7,#fffdfd3e);
@@ -63,24 +65,24 @@ min-height:50%;
 display:flex;
 justify-content:center;
 flex-direction:column;
-${mobile({width:"80%"})}
-${tablet({width:"70%"})}
+${mobile({ width: "80%" })}
+${tablet({ width: "70%" })}
 `
-const Title=styled.h1`
+const Title = styled.h1`
 text-align:center;
 font-size:28px;
 font-weight:300;
 padding:10px 0;
-${mobile({fontSize:"38px"})}
+${mobile({ fontSize: "38px" })}
 `
-const Form=styled.form`
+const Form = styled.form`
 
     display:flex;
 align-items:center;
   justify-content:center;
 flex-wrap:wrap;
 `
-const Input=styled.input`
+const Input = styled.input`
 
 font-size:20px;
 min-width:60%;
@@ -89,14 +91,14 @@ padding:5px;
 border: none;
 box-shadow: 2px 2px 5px 1px #11111153;
 border-radius:4px;
-${mobile({fontSize:"20px",width:"75%" })};
+${mobile({ fontSize: "20px", width: "75%" })};
 &:hover,:focus{
   box-shadow: 0px 0px 5px 1px #06d6d6dc;
   outline:none;
 }
 `
 
-const ButtonContainer=styled.div`
+const ButtonContainer = styled.div`
 width:100%;
 display:flex;
 align-items:flex-end;
@@ -104,72 +106,80 @@ justify-content:center;
 padding:20px;
 `
 
-const LinkContainer=styled.div`
+const LinkContainer = styled.div`
     display:flex;
     justify-content:center;
     flex-direction:column;
     align-items:center;
 `
-const Link=styled.a`
+const Link = styled.a`
 width:100%;
 
 font-size:16px;
 text-decoration:underline;
 cursor:pointer;
-${mobile({fontSize:"14px"})}
+${mobile({ fontSize: "14px" })}
 `
-const Error =styled.p`
+const Error = styled.p`
 font-size: 22px;
 color:red;
 text-align:center;`
-const Success =styled.p`
+const Success = styled.p`
 font-size: 22px;
 color:green;
 text-align:center;`
 
 
 const Login = () => {
-const [username, setUsername] = useState("")
-const [password, setPassword] = useState("")
-// const {isFetching,error,currentUser} = useState({});
-// const {isFetching,error,currentUser} = useSelector((state)=>state.user);
-// const storeUser = useSelector((state)=>state.user)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  // const { error } = useSelector((state) => state.user);
+  // const storeUser = useSelector((state) => state.user)
 
-const dispatch = useDispatch()
-const handleClick =(e)=>{
-  e.preventDefault()
-  login(dispatch,{username,password})
-}
-// console.log(storeUser)
+  const dispatch = useDispatch()
+  const handleClick =  (e) => {
+    e.preventDefault()
+    try{
+
+      login(dispatch, { username, password })
+
+    }catch{
+      
+
+      
+    }
+
+  }
+
+
 
   return (
     <>
       {/* <Topbar user="notLoggedIn"/> */}
-    <Container >
+      <Container >
         <Wrapper>
-            {/* {error && <Error>Something went wrong..!</Error>}
-            {currentUser && !error && <Success>logged in successfully.</Success>} */}
-            <Title>SIGN IN</Title>
-            <Form>
-                <Input placeholder="Username or Email" onChange={(e)=>setUsername(e.target.value)}/>
-                <Input type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
-           
+          {/* {error && <Error>{error}</Error>} */}
+          <Title>SIGN IN</Title>
+          <Form>
+            <Input placeholder="Username or Email" onChange={(e) => setUsername(e.target.value)} />
+            <Input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+
 
             <ButtonContainer >
-           <Button onClick={handleClick}  >LOG IN</Button>
+              <Button onClick={handleClick}  >LOG IN</Button>
 
             </ButtonContainer>
             <LinkContainer>
-            
-            <Link>FORGOT YOUR PASSWORD?</Link>
-            <Link>CREATE A NEW ACCOUNT</Link>
+
+              <Link>FORGOT YOUR PASSWORD?</Link>
+              <Link>CREATE A NEW ACCOUNT</Link>
             </LinkContainer>
-            
-        </Form>
+
+          </Form>
         </Wrapper>
 
 
-    </Container>
+      </Container>
     </>
   )
 }

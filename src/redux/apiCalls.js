@@ -1,17 +1,25 @@
 import  useDispatch  from "react-redux"
 import { publicRequest, userRequest } from "../requestMethods";
 import { addProductFailed, addProductStarted, addProductSucceed, deleteProductFailed, deleteProductStarted, deleteProductSucceed, getProductFailed, getProductStarted, getProductSucceed, updateProductFailed, updateProductStarted, updateProductSucceed } from "./productRedux";
-import { loginFailure, loginStart, loginSuccess } from "./userRedux"
+import { loginFailure, loginStart, loginSuccess, logoutSuccess } from "./userRedux"
 
 export const login = async ( dispatch,user)=>{
     dispatch(loginStart());
     try{
         const res = await publicRequest.post("/auth/login",user)
+        console.log(user);
         dispatch(loginSuccess(res.data))
     }catch(err){
-        dispatch(loginFailure())
+        const res = await publicRequest.post("/auth/login",user)
+        dispatch(loginFailure(res.data))
 
     }
+    
+}
+export const logout =  (dispatch)=>{
+    
+        dispatch(logoutSuccess())
+    
     
 }
 export const getProducts = async (dispatch)=>{

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Notifications, Language, Settings, Person } from "@mui/icons-material";
+import UserDropMenu from "./UserDropMenu";
 const Container = styled.div`
   background-color: #f4ffff;
   width: 100%;
@@ -60,7 +61,7 @@ const Topbar = () => {
   return (
     <Container>
       <Wrapper>
-        <Left>
+        <Left >
           <Logo>QatarRing.admin</Logo>
         </Left>
         <Right>
@@ -80,10 +81,8 @@ const Topbar = () => {
             <Settings />
           </IconContainer>
           <IconContainer>
-            <Person />
-            <BadgeSpan>
-              <p>2</p>
-            </BadgeSpan>
+            <UserDropMenu/>
+            
           </IconContainer>
         </Right>
       </Wrapper>

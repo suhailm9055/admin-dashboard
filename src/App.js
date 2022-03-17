@@ -40,55 +40,56 @@ function App() {
       <Switch>
         <Route path="/login">
           {admin ? <Redirect to="/" /> : <Login />}
-
+          {/* <Login/> */}
         </Route>
+        <>
+          <MainContainer>
 
-        
-          <>
-            <MainContainer>
-
-              <HeaderContainer>
-                <Topbar />
-              </HeaderContainer>
-              <BodyContainer>
-                <SidebarContainer>
-                  <Sidebar />
-                </SidebarContainer>
-                <PagesContainer>
-                  <Route exact path="/">
-                    {admin ? <Home /> : <Redirect to="/login" />}
-
-                  </Route>
-                  <Route path="/users">
+            <HeaderContainer>
+              <Topbar />
+            </HeaderContainer>
+            <BodyContainer>
+              <SidebarContainer>
+                <Sidebar />
+              </SidebarContainer>
+              <PagesContainer>
+                <Route exact path="/">
+                  {admin ? <Home /> : <Redirect to="/login" />}
+                  {/* <Home/> */}
+                </Route>
+                <Route path="/users">
                   {admin ? <UsersList /> : <Redirect to="/login" />}
-                    
-                  </Route>
-                  <Route path="/user/:UserId">
+
+                </Route>
+                <Route path="/user/:UserId">
                   {admin ? <User /> : <Redirect to="/login" />}
 
-                  </Route>
-                  <Route path="/adduser">
+                </Route>
+                <Route path="/adduser">
                   {admin ? <NewUser /> : <Redirect to="/login" />}
 
-                  </Route>
-                  <Route path="/products">
+                </Route>
+                <Route path="/products">
                   {admin ? <Products /> : <Redirect to="/login" />}
 
-                  </Route>
-                  <Route path="/product/:productId">
+                </Route>
+                <Route path="/product/:productId">
                   {admin ? <Product /> : <Redirect to="/login" />}
 
-                  </Route>
-                  <Route path="/addproduct">
+                </Route>
+                <Route path="/addproduct">
                   {admin ? <AddProduct /> : <Redirect to="/login" />}
 
-                  </Route>
-                </PagesContainer>
-              </BodyContainer>
+                </Route>
+              </PagesContainer>
+            </BodyContainer>
 
-            </MainContainer>
-          </>
-        
+          </MainContainer>
+        </>
+
+
+
+
       </Switch>
     </Router>
   );
