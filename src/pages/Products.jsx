@@ -89,7 +89,7 @@ const Products = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
     getProducts(dispatch)
-  },[])
+  },[dispatch])
   const products = useSelector((state)=>state.product.products)
   // const products = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.product).products;
   

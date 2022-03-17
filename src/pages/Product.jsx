@@ -272,7 +272,7 @@ const Product = () => {
       const [productUpdate,setProductUpdate]=useState(product);
       useEffect(()=>{
         getProducts(dispatch)
-      },[])
+      },[dispatch])
 const handleChange=(e)=>{
 setProductUpdate(prev=>{
   return {...prev,[e.target.name]:e.target.value}})
