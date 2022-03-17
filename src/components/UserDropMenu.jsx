@@ -114,7 +114,7 @@ export default function UserDropMenu() {
                 </MenuItem>
                 </Link>
                 <Divider />
-                <Link to={"/user/"+currentUser._id} style={{textDecoration:"inherit",color:"inherit"}}>
+                <Link to={"/user/"+currentUser?._id} style={{textDecoration:"inherit",color:"inherit"}}>
                 <MenuItem>
 
                     <ListItemIcon>

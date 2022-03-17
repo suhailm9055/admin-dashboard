@@ -1,5 +1,6 @@
 import  useDispatch  from "react-redux"
 import { publicRequest, userRequest } from "../requestMethods";
+import { getUsersFailure, getUsersStart, getUsersSuccess, updateUserFailure, updateUsersStart, updateUserStart, updateUserSuccess } from "./allUsersRedux";
 import { addProductFailed, addProductStarted, addProductSucceed, deleteProductFailed, deleteProductStarted, deleteProductSucceed, getProductFailed, getProductStarted, getProductSucceed, updateProductFailed, updateProductStarted, updateProductSucceed } from "./productRedux";
 import { loginFailure, loginStart, loginSuccess, logoutSuccess } from "./userRedux"
 
@@ -22,6 +23,51 @@ export const logout =  (dispatch)=>{
     
     
 }
+export const getUsers = async (dispatch)=>{
+    dispatch(getUsersStart());
+    try{
+        const res = await userRequest.get("/users")
+        dispatch(getUsersSuccess(res.data))
+    }catch(err){
+        dispatch(getUsersFailure())
+
+    }
+    
+}
+export const updateUser = async (id,user,dispatch)=>{
+    dispatch(updateUserStart());
+    try{
+        const res = await userRequest.put(`/users/update/${id}`,user)
+        dispatch(updateUserSuccess(id,user))
+    }catch(err){
+        dispatch(updateUserFailure())
+
+    }
+    
+}
+// export const updateProduct = async (id,product,dispatch)=>{
+//     dispatch(updateProductStarted());
+//     try{
+//         const res = await userRequest.put(`/products/update/${id}`,product)
+//         dispatch(updateProductSucceed(id,product))
+//         console.log(product);
+//     }catch(err){
+//         dispatch(updateProductFailed())
+
+//     }
+    
+// }
+// export const addProduct = async (product,dispatch)=>{
+//     dispatch(addProductStarted());
+//     try{
+//         const res = await userRequest.post("/products/add",product)
+//         dispatch(addProductSucceed(res.data))
+//     }catch(err){
+//         dispatch(addProductFailed())
+
+//     }
+    
+// }
 export const getProducts = async (dispatch)=>{
     dispatch(getProductStarted());
     try{

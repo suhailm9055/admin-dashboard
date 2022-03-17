@@ -268,8 +268,8 @@ const Product = () => {
         };
         getStats();
       },[MONTH]);
-      const dispatch = useDispatch()
       const [productUpdate,setProductUpdate]=useState(product);
+      const dispatch = useDispatch()
       useEffect(()=>{
         getProducts(dispatch)
       },[dispatch])

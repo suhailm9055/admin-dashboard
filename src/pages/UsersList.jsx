@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import styled from 'styled-components';
 import { Edit } from '@material-ui/icons';
 import { Delete } from '@material-ui/icons';
 import { userRows } from '../Data';
 import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../redux/apiCalls';
+import { format } from 'timeago.js';
 
 
 
@@ -55,42 +58,48 @@ const IconContainer = styled.div`
 
 
 const UsersList = () => {
-  const [data,setdata]=useState(userRows)
+  const users = useSelector((state)=>state.allUsers?.users)
+  const [data,setdata]=useState(users)
 const handleDelete =  (id)=>{
   setdata(data.filter(items=>items.id !==id))
 }
+const dispatch = useDispatch()
+useEffect(()=>{
+  getUsers(dispatch)
+  
+},[dispatch])
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: '_id', headerName: 'ID', width: 200 },
     { field: 'user', headerName: 'User', width: 200 , renderCell:(params)=>{
       return(
         <UserContainer>
-            <Img src={params.row.avatar}></Img>
+            <Img src={params.row.img}></Img>
             <UserDetails>
               <UserName>{params.row.username}</UserName>
-              <UserTitle>Photographer</UserTitle>
+              <UserTitle>{params.row.fullname}</UserTitle>
             </UserDetails>
           
           </UserContainer>
       )
     }},
-    { field: 'email', headerName: 'Email', width: 130 },
+    { field: 'email', headerName: 'Email', width: 180 },
     {
-      field: 'status',
-      headerName: 'Status',
-      width: 90,
+      field: 'createdAt',
+      headerName: 'registered',
+      width: 150,
+      renderCell:(params)=>{
+return format(params.row.createdAt)
+      }
     },
+    
     {
-      field: 'transaction',
-      headerName: 'Transaction Amount',
-      width: 160,
-    },{
       field:"edit",
       headerName:"Edit",
       width:50,
       renderCell:(params)=>{
         return(
-          <Link to={"/user/"+params.row.id}>
+          <Link to={"/user/"+params.row._id}>
           <IconContainer><Edit/></IconContainer>
           </Link>
          
@@ -116,9 +125,10 @@ const columns = [
     
 
     <DataGrid
-    rows={data}
+    rows={users}
     columns={columns}
     pageSize={8}
+    getRowId={(rows)=>rows._id}
     rowsPerPageOptions={[6]}
     checkboxSelection
     style={{fontSize:"20px"}}

@@ -5,9 +5,12 @@ import {
   PersonOutline,
   PhoneAndroid
 } from "@mui/icons-material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { format } from "timeago.js";
+import { getUsers, updateUser } from "../redux/apiCalls";
 
 const Container = styled.div``;
 const HeadingContainer = styled.div`
@@ -195,11 +198,45 @@ const ImgButton = styled.div`
     font-weight: bold;
   }
 `;
+const Select =styled.select`
+border: none;
+color: gray;
+background-color: #f0ffff;
+border-bottom: 1px solid #969696ba;
+height: 40px;
+padding: 10px;
+border-radius:5px;
+font-size: 18px;
+&:hover:focus{
+box-shadow: 0px 6px 22px -10px #06d6d6dc;
+outline:none;
+}
+`
+const Option =styled.option`
+`
 
 const IconSize = "19px";
 const marginInline = "10px";
 
 const User = () => {
+  const location = useLocation();
+  const userId = location.pathname.split("/")[2];
+  const user = useSelector((state)=>state.allUsers?.users.find(user=>user._id===userId))
+  const [userUpdate, setUserUpdate] = useState(user)
+  const dispatch = useDispatch()
+      useEffect(()=>{
+        getUsers(dispatch)
+      },[dispatch])
+  const handleChange=(e)=>{
+    setUserUpdate(prev=>{
+      return {...prev,[e.target.name]:e.target.value}})
+    }
+    const handleUpdate=(e)=>{
+      e.preventDefault()
+      getUsers(dispatch)
+      updateUser(userId,userUpdate,dispatch)
+    }
+console.log(userUpdate);
   return (
     <Container>
       <HeadingContainer>
@@ -213,8 +250,8 @@ const User = () => {
           <UserInfoContainer>
             <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
             <UserDesc>
-              <UserName>Jon Snow</UserName>
-              <UserTitle>Photographer</UserTitle>
+              <UserName>{user.username}</UserName>
+              {/* <UserTitle>Photographer</UserTitle> */}
             </UserDesc>
           </UserInfoContainer>
           <AccountContainer>
@@ -225,7 +262,7 @@ const User = () => {
                   style={{ fontSize: IconSize, marginInline: marginInline }}
                 />
               </Icon>
-              <UserInfo>JonSnow24</UserInfo>
+              <UserInfo>{user.username}</UserInfo>
             </UserDetailsContainer>
             <UserDetailsContainer>
               <Icon>
@@ -233,7 +270,15 @@ const User = () => {
                   style={{ fontSize: IconSize, marginInline: marginInline }}
                 ></CalendarToday>
               </Icon>
-              <UserInfo>02/05/2544</UserInfo>
+              <UserInfo>registered:{format(user.createdAt)}</UserInfo>
+            </UserDetailsContainer>
+            <UserDetailsContainer>
+              <Icon>
+                <CalendarToday
+                  style={{ fontSize: IconSize, marginInline: marginInline }}
+                ></CalendarToday>
+              </Icon>
+              <UserInfo>Updated:{format(user.updatedAt)}</UserInfo>
             </UserDetailsContainer>
           </AccountContainer>
           <AccountContainer>
@@ -252,7 +297,7 @@ const User = () => {
                   style={{ fontSize: IconSize, marginInline: marginInline }}
                 />
               </Icon>
-              <UserInfo>jonsnow24@gmail.com</UserInfo>
+              <UserInfo>{user.email}</UserInfo>
             </UserDetailsContainer>
             <UserDetailsContainer>
               <Icon>
@@ -269,15 +314,27 @@ const User = () => {
           <UserEditWrapper>
             <UserEditInputs>
               <Label>Username</Label>
-              <Input type="text" placeholder="JonSnow24"></Input>
+              <Input type="text" placeholder={user.username} name="username" onChange={handleChange}></Input>
               <Label>Full Name</Label>
-              <Input type="text" placeholder="Jon Snow"></Input>
+              <Input type="text" placeholder={user.fullname} name="fullname" onChange={handleChange}></Input>
               <Label>Email</Label>
-              <Input type="email" placeholder="jonsnow24@gmail.com"></Input>
+              <Input type="email" placeholder={user.email} name="email" onChange={handleChange}></Input>
               <Label>phone</Label>
-              <Input type="number" placeholder="+91 25525 25525"></Input>
+              <Input type="number" placeholder={user.phone} name="phone" onChange={handleChange}></Input>
               <Label>Address</Label>
-              <Input type="text" placeholder="Calicut | Kerala"></Input>
+              <Input type="text" placeholder={user.address} name="address" onChange={handleChange}></Input>
+              <Label>Admin</Label>
+              {userUpdate.isAdmin ? <Select name="isAdmin" id='isAdmin' onChange={handleChange}>
+               <Option value="true" selected>yes</Option>
+               <Option value="false" >no</Option>
+               </Select>
+               :
+               <Select name="isAdmin" id='isAdmin' onChange={handleChange}>
+               <Option value="true" >yes</Option>
+               <Option value="false" selected>no</Option>
+               
+               </Select>
+               }
             </UserEditInputs>
             <UserEditImg>
               <EditImg>
@@ -295,7 +352,7 @@ const User = () => {
                 ></Input>
               </EditImg>
               <ButtonContainer>
-                <Button>Update</Button>
+                <Button onClick={handleUpdate}>Update</Button>
               </ButtonContainer>
             </UserEditImg>
           </UserEditWrapper>
