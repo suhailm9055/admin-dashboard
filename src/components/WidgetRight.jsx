@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { userRequest } from "../requestMethods";
 import { format } from "timeago.js";
+import { userRequest } from "../requestMethods";
 
 const Container = styled.div`
   flex: 2;
@@ -26,13 +26,13 @@ const UserContainer = styled.div`
   align-items: center;
   margin: 5px 0 5px 10px;
 `;
-const Img = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 20px;
-  object-fit: cover;
-`;
+// const Img = styled.img`
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   margin-right: 20px;
+//   object-fit: cover;
+// `;
 // const UserDetails = styled.div`
 //   display: flex;
 //   align-items: stretch;
@@ -89,6 +89,8 @@ const TableHead = styled.th`
 const TableDesc = styled.td`
   font-weight: 300;
 `;
+const TableBody = styled.tbody`
+`;
 
 export const WidgetRight = () => {
   const [orders, setOrders] = useState([]);
@@ -115,7 +117,9 @@ export const WidgetRight = () => {
           </TableRow>
 
           {orders.map((order) => (
-            <TableRow key={order._id}>
+            <TableBody key={order._id}>
+
+            <TableRow >
               <TableDesc>
                 <UserContainer>
                   {/* <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img> */}
@@ -129,6 +133,7 @@ export const WidgetRight = () => {
                 <Button status={order.status}>{order.status}</Button>
               </TableDesc>
             </TableRow>
+            </TableBody>
           ))}
         </TableContainer>
       </Wrapper>

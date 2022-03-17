@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {
   ArrowDownward,
   ArrowUpward,
-  CurrencyRupee,
+  
   CurrencyRupeeOutlined,
 } from "@mui/icons-material";
-import { userRequest } from "../requestMethods";
+import {  userRequest } from "../requestMethods";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -58,9 +58,9 @@ const FeaturedInfo = () => {
     const getIncome = async ()=>{
       try{
           const res = await userRequest.get("orders/income");
-          setIncome(res.data[1])
+        setIncome(res.data[1])
           setPercent((res.data[1].total*100) / res.data[0].total-100)
-
+// console.log(res.data);
       }catch{}
     }
     getIncome()

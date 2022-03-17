@@ -16,7 +16,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Link, useLocation } from "react-router-dom";
-import MenuItem from "./MenuItem";
 const Container = styled.div`
   background-color: #f4ffff;
   height: calc(100vh - 50px);
