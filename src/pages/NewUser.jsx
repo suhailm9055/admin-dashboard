@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { addUser } from '../redux/apiCalls';
 
 
 const Container = styled.div`
@@ -85,6 +87,16 @@ const Button = styled.button`
   }
 `;
 const NewUser = () => {
+  const [user, setUser] = useState({});
+  const handleChange = (e)=>{
+    setUser((prev)=>{
+      return {...prev,[e.target.name]:e.target.value}
+    })
+  }
+  const dispatch = useDispatch()
+  const handleSubmit = ()=>{
+    addUser(user,dispatch)
+  }
   return (
    <Container>
        <MainTitle>New User</MainTitle>
@@ -92,40 +104,40 @@ const NewUser = () => {
            <Form>
                <InputItem>
            <Label>Username</Label>
-              <Input type="text" ></Input>
+              <Input type="text" name="username" onChange={handleChange}></Input>
                </InputItem>
                <InputItem>
               <Label>Full Name</Label>
-              <Input type="text" ></Input>
+              <Input type="text" name="fullname" onChange={handleChange}></Input>
                </InputItem>
                <InputItem>
               <Label>Email</Label>
-              <Input type="email" ></Input>
+              <Input type="email" name="email" onChange={handleChange}></Input>
                </InputItem>
                <InputItem>
               <Label>phone</Label>
-              <Input type="number" ></Input>
+              <Input type="number" name="phone" onChange={handleChange}></Input>
                </InputItem>
                <InputItem>
               <Label>Address</Label>
-              <Input type="text" ></Input>
+              <Input type="text" name="address" onChange={handleChange}></Input>
                </InputItem>
                <InputItem>
               <Label>Gender</Label>
               <RadioButtons>
 
-              <Input type="radio" name='gender' id='male' value="male" ></Input>
+              <Input type="radio" name='gender' id='male' value="male" onChange={handleChange}></Input>
               <Label id='male'>Male</Label>
-              <Input type="radio" name='gender' id='female' value="female" ></Input>
+              <Input type="radio" name='gender' id='female' value="female" onChange={handleChange}></Input>
               <Label id='female'>Female</Label>
-              <Input type="radio" name='gender' id='other' value="other" ></Input>
+              <Input type="radio" name='gender' id='other' value="other" onChange={handleChange}></Input>
               <Label id='other'>Other</Label>
 
               </RadioButtons>
                </InputItem>
            </Form>
            <ButtonContainer>
-                <Button>Create</Button>
+                <Button onClick={handleSubmit}>Create</Button>
               </ButtonContainer>
        </Wrapper>
    </Container>
