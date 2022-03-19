@@ -101,7 +101,8 @@ const columns = [
     { field: 'user', headerName: 'User', width: 200 , renderCell:(params)=>{
       return(
         <UserContainer>
-            <Img src={params.row.img}></Img>
+            <Img src={params.row.img ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"}></Img>
             <UserDetails>
               <UserName>{params.row.username}</UserName>
               <UserTitle>{params.row.fullname}</UserTitle>

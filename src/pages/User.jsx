@@ -248,7 +248,7 @@ console.log(userUpdate);
       <Wrapper>
         <UserViewContainer>
           <UserInfoContainer>
-            <Img src={userUpdate.img ||
+            <Img src={user.img ||
                   "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
             <UserDesc>
               <UserName>{user.username}</UserName>

@@ -87,7 +87,7 @@ export const WidgetLeft = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await userRequest.get("/users");
+        const res = await userRequest.get("/users?new=true");
         setUsers(res.data);
       } catch { }
     };
