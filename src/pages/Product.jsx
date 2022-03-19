@@ -300,7 +300,7 @@ const handleUpdate=(e)=>{
           </LeftContainer>
           <RightContainer>
             <ProductInfo>
-              <Img src={productUpdate.img}/>
+              <Img src={productUpdate.img || "/images/photo-upload-icon-picture-flat-260nw-1918146320.jpg" }/>
               <Title>{productUpdate.title}</Title>
             </ProductInfo>
             <ProductDetails>

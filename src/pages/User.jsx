@@ -241,14 +241,15 @@ console.log(userUpdate);
     <Container>
       <HeadingContainer>
         <Title>Edit User</Title>
-        <Link to="/newuser">
+        <Link to="/adduser">
           <Button>Create</Button>
         </Link>
       </HeadingContainer>
       <Wrapper>
         <UserViewContainer>
           <UserInfoContainer>
-            <Img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+            <Img src={userUpdate.img ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
             <UserDesc>
               <UserName>{user.username}</UserName>
               {/* <UserTitle>Photographer</UserTitle> */}
@@ -343,7 +344,8 @@ console.log(userUpdate);
                     <ImgButton>Upload Image</ImgButton>
                   </Label>
                 </InfoImgHover>
-                <UploadImg src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></UploadImg>
+                <UploadImg src={userUpdate.img ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"}></UploadImg>
 
                 <Input
                   type="file"

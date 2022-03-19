@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -166,7 +166,8 @@ const AddProduct = () => {
   const [cat, setCat] = useState([]);
   const [file, setFile] = useState([]);
   const [inStock, setInStock] = useState("true");
-const dispatch= useDispatch();
+  const [updatedImage, setUpdatedImage] = useState("/images/photo-upload-icon-picture-flat-260nw-1918146320.jpg")
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     e.preventDefault();
     setInputs((prev) => {
@@ -221,11 +222,13 @@ const dispatch= useDispatch();
             img: downloadURL,
             categories: cat,
           };
-          addProduct(product,dispatch)
+
+          addProduct(product, dispatch)
         });
       }
     );
   };
+
   return (
     <BottomContainer>
       <UserEditContainer>
@@ -257,11 +260,11 @@ const dispatch= useDispatch();
             <EditImg>
               <InfoImgHover>
                 <Label htmlFor="file">
-                  <ImgButton>Upload Image</ImgButton>
+                  <ImgButton >select Image</ImgButton>
                 </Label>
               </InfoImgHover>
               <UploadImg
-                src="/images/photo-upload-icon-picture-flat-260nw-1918146320.jpg"
+                src={updatedImage}
                 alt=""
               ></UploadImg>
 
@@ -269,9 +272,10 @@ const dispatch= useDispatch();
                 type="file"
                 id="file"
                 style={{ display: "none" }}
-                onChange={(e) => setFile(e.target.files[0])}
+                onChange={(e) => { setUpdatedImage(URL.createObjectURL(e.target.files[0])); setFile(e.target.files[0]) }}
               ></Input>
             </EditImg>
+
             <ButtonContainer>
               <HeaderButton onClick={handleSubmit}>Update</HeaderButton>
             </ButtonContainer>

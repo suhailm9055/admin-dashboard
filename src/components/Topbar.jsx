@@ -62,24 +62,24 @@ const Topbar = () => {
     <Container>
       <Wrapper>
         <Left >
-          <Logo>QatarRing.admin</Logo>
+          <Logo>e-Shop.admin</Logo>
         </Left>
         <Right>
-          <IconContainer>
+          {/* <IconContainer>
             <Notifications />
             <BadgeSpan color="red">
               <p>4</p>
             </BadgeSpan>
-          </IconContainer>
-          <IconContainer>
+          </IconContainer> */}
+          {/* <IconContainer>
             <Language />
             <BadgeSpan>
               <p>2</p>
             </BadgeSpan>
-          </IconContainer>
-          <IconContainer>
+          </IconContainer> */}
+          {/* <IconContainer>
             <Settings />
-          </IconContainer>
+          </IconContainer> */}
           <IconContainer>
             <UserDropMenu/>
             

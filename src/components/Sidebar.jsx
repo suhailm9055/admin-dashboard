@@ -1,4 +1,6 @@
 import {
+  Add,
+  AddCircle,
   Assessment,
   ChatBubble,
   CurrencyRupeeSharp,
@@ -7,6 +9,7 @@ import {
   Home,
   LocalMall,
   PermIdentity,
+  PersonAdd,
   Report,
   Timeline,
   TrendingUp,
@@ -40,6 +43,7 @@ const List = styled.ul`
 `;
 const ListItem = styled.li`
   padding: 2px;
+  margin-bottom:5px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -88,18 +92,18 @@ export const Sidebar = () => {
               )}
             </Link>
 
-            <ListItem>
+            {/* <ListItem>
               <Timeline
                 style={{ fontSize: IconSize, marginInline: marginInline }}
               />
               Analytics
-            </ListItem>
-            <ListItem>
+            </ListItem> */}
+            {/* <ListItem>
               <TrendingUp
                 style={{ fontSize: IconSize, marginInline: marginInline }}
               />
               Sales
-            </ListItem>
+            </ListItem> */}
           </List>
         </Menu>
         <Menu>
@@ -109,7 +113,7 @@ export const Sidebar = () => {
               style={{ color: "inherit", textDecoration: "inherit" }}
               to="/users"
             >
-              {selection1 === "users" ? (
+              {selection1 === ("users" || "user") ? (
                 <ListItem style={{ backgroundColor: "#c5ffff" }}>
                   {" "}
                   <PermIdentity
@@ -148,44 +152,70 @@ export const Sidebar = () => {
               )}
             </Link>
 
-            <ListItem>
+            {/* <ListItem>
               <CurrencyRupeeSharp
                 style={{ fontSize: IconSize, marginInline: marginInline }}
               />
               Transactions
-            </ListItem>
-            <ListItem>
+            </ListItem> */}
+            {/* <ListItem>
               <Assessment
                 style={{ fontSize: IconSize, marginInline: marginInline }}
               />
               Reports
-            </ListItem>
+            </ListItem> */}
           </List>
         </Menu>
         <Menu>
-          <Title>Notifications</Title>
+          <Title>Create</Title>
           <List>
-            <ListItem selection="">
-              <Email
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
-              Mail
-            </ListItem>
-            <ListItem>
-              <DynamicFeed
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
-              Feedback
-            </ListItem>
-            <ListItem>
-              <ChatBubble
-                style={{ fontSize: IconSize, marginInline: marginInline }}
-              />
-              Messages
-            </ListItem>
+          <Link
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              to="/addproduct"
+            >
+          {selection1 === ("addproduct") ? (
+                <ListItem style={{ backgroundColor: "#c5ffff" }}>
+                  {" "}
+                  <Add
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                  Add New Product
+                </ListItem>
+              ) : (
+                <ListItem onClick={() => setSelection1("addproduct")}>
+                  <Add
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                  />
+                 Add New Product
+                </ListItem>
+              )}
+              </Link>
+              <Link
+              style={{ color: "inherit", textDecoration: "inherit" }}
+              to="/adduser"
+            >
+
+           {selection1 === ("adduser") ? (
+             <ListItem style={{ backgroundColor: "#c5ffff" }}>
+                  {" "}
+                  <PersonAdd
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                    />
+                  Add New User
+                </ListItem>
+              ) : (
+                <ListItem onClick={() => setSelection1("adduser")}>
+                  <PersonAdd
+                    style={{ fontSize: IconSize, marginInline: marginInline }}
+                    />
+                 Add New User
+                </ListItem>
+              )}
+              </Link>
+            
           </List>
         </Menu>
-        <Menu>
+        {/* <Menu>
           <Title>Staff</Title>
           <List>
             <ListItem selection="">
@@ -207,7 +237,7 @@ export const Sidebar = () => {
               Reports
             </ListItem>
           </List>
-        </Menu>
+        </Menu> */}
       </Wrapper>
     </Container>
   );

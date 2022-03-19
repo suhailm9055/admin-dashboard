@@ -1,6 +1,7 @@
 import { Visibility } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { userRequest } from "../../src/requestMethods";
 
@@ -88,7 +89,7 @@ export const WidgetLeft = () => {
       try {
         const res = await userRequest.get("/users");
         setUsers(res.data);
-      } catch {}
+      } catch { }
     };
     getUsers();
   }, []);
@@ -110,12 +111,16 @@ export const WidgetLeft = () => {
                 <UserName>{user.username}</UserName>
                 {/* <UserTitle>Photographer</UserTitle> */}
               </UserDetails>
-              <Button>
-                <Visibility
-                  style={{ fontSize: IconSize, marginRight: marginRight }}
-                />
-                <ButtonText>Display</ButtonText>{" "}
-              </Button>
+              <Link style={{ color: "inherit", textDecoration: "inherit" }} to={"/user/" + user._id}>
+
+                <Button>
+                  <Visibility
+                    style={{ fontSize: IconSize, marginRight: marginRight }}
+                  />
+
+                  <ButtonText>Display</ButtonText>{" "}
+                </Button>
+              </Link>
             </UserContainerLi>
           ))}
         </UserList>
